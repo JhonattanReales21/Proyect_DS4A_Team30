@@ -1,6 +1,6 @@
 # Proyect_DS4A_Team30
 
-## Requiriments 
+## Requirements 
 * [Python](http://www.python.org) version 3.6 or greater;
 * [Numpy](http://www.numpy.org), the core numerical extensions for linear algebra and multidimensional arrays;
 * [Scipy](http://www.scipy.org), additional libraries for scientific programming;
