@@ -15,6 +15,6 @@ def get_view_by_name(view_name):
         :pd.Dataframe containing with all the data fetched from the SQL relation.
     """
     query = """
-        select * {0}
+        select * from {0}
     """.format(view_name)
-    return pd.read_sql_query('select * from venta_ciudad_tienda', con=ENGINE)
+    return pd.read_sql_query(query, con=ENGINE)
