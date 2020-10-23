@@ -1,7 +1,9 @@
 import pandas as pd
 from sqlalchemy import create_engine
+from os import environ
 
-DB_URI = 'postgres://postgres:postgres@database-1.c04tyndaqlxm.us-east-2.rds.amazonaws.com:5432/postgres'
+
+DB_URI = environ['URI']
 ENGINE = create_engine(DB_URI)
 
 def get_view_by_name(view_name):
