@@ -1,1 +1,1 @@
-En esta carpeta se guardan los scripts de bases de datos para creación de objetos entre otras funcionalidades.
+En esta librería creamos las funciones para traer datos desde nuestras fuentes.
