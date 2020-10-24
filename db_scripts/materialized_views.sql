@@ -21,3 +21,18 @@ group by s.fecha_compra
 with no data;
 create unique index on ventas_diarias(fecha_compra);
 refresh materialized view ventas_diarias;
+
+
+create materialized view canal_edad_tipo_ciudad
+as
+select
+s.canal, 
+s.edad, 
+s.tipo_articulo, 
+s.ciudad_tienda,
+sum(valor_neto) as volumen_pesos, 
+count(id_sale) as cantidad_ventas
+from sales s
+group by s.canal, s.tipo_articulo, s.edad, s.ciudad_tienda with no data;
+create unique index on canal_edad_tipo_ciudad(canal, tipo_articulo, edad, ciudad_tienda);
+refresh materialized view canal_edad_tipo_ciudad;
