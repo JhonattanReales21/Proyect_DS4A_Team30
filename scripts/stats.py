@@ -17,7 +17,7 @@ import os
 from app import app
 
 # Import data
-from scripts import get_views
+from data_fetch import get_views
   
 
 def create_stats():

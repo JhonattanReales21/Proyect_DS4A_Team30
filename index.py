@@ -29,7 +29,8 @@ from app import app
 ###########################################################
 
 # LOAD THE DIFFERENT FILES
-from scripts import title, sidebar, Col_map, stats, tabs, data
+from scripts import title, sidebar, Col_map, stats, tabs
+from data_fetch import get_views
 
 # PLACE THE COMPONENTS IN THE LAYOUT
 app.layout = html.Div(
