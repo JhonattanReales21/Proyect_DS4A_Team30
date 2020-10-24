@@ -1,5 +1,5 @@
-.DS_Store
-.ipynb_checkpoints/
-.pyc
-__pycache__/
+*.DS_Store
+*.ipynb_checkpoints/
+*.pyc
+*__pycache__/
 Colombia_map.html
