@@ -1,1 +1,1 @@
-En esta librería creamos las funciones para traer datos desde nuestras fuentes.
+This python library is intended for functions and classes for fetching data fron every possible source.

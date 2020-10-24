@@ -8,8 +8,10 @@
 * [IPython](http://ipython.org), with the additional libraries required for the notebook interface.
 * [Pandas](http://pandas.pydata.org/), Python version of R dataframe
 * [Seaborn](stanford.edu/~mwaskom/software/seaborn/), used mainly for plot styling
+* [PsycoPG2](https://pypi.org/project/psycopg2/), postgres driver for python.
+* [SQLAlchemy] (https://docs.sqlalchemy.org/en/13/), for managing psycopg2 engines.
 
-## Equipo
+## Team
 - Francisco Bertel Romero
 - Henry Mejia Osorio
 - Jhonattan Reales de La Asunción

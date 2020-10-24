@@ -1,0 +1,1 @@
+In this folder, we save all preprocessing we did to conceive clean data.
