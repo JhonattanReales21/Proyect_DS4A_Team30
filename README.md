@@ -9,7 +9,7 @@
 * [Pandas](http://pandas.pydata.org/), Python version of R dataframe
 * [Seaborn](stanford.edu/~mwaskom/software/seaborn/), used mainly for plot styling
 * [PsycoPG2](https://pypi.org/project/psycopg2/), postgres driver for python.
-* [SQLAlchemy] (https://docs.sqlalchemy.org/en/13/), for managing psycopg2 engines.
+* [SQLAlchemy](https://docs.sqlalchemy.org/en/13/), for managing psycopg2 engines.
 
 ## Team
 - Francisco Bertel Romero
