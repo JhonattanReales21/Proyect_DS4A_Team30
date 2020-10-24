@@ -3,3 +3,6 @@ numpy
 seaborn
 pandas
 matplotlib
+boto3
+sqlalchemy
+psycopg2-binary
