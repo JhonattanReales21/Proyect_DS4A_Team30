@@ -47,6 +47,7 @@ app.layout = html.Div(
     								"height": "60px",
     								"width": "auto",
     								"margin-bottom": "25px",
+									"padding": "5px"
     							},
     						),
     				],
@@ -81,7 +82,10 @@ app.layout = html.Div(
     		className = "row flex-display",
     		style = {"margin-bottom": "25px"}
     	),
-    	html.Div(children = dashboard.create_dashboard(), id = "app-content"),
+    	html.Div(
+			children = dashboard.create_dashboard(), 
+			id = "app-content",
+			style={"padding":"5px"}),
     ],
     #className="ds4a-app",  # You can also add your own css files by locating them into the assets folder
     id = "MainContent",
