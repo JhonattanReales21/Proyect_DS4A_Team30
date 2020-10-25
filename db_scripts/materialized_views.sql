@@ -36,3 +36,21 @@ from sales s
 group by s.canal, s.tipo_articulo, s.edad, s.ciudad_tienda with no data;
 create unique index on canal_edad_tipo_ciudad(canal, tipo_articulo, edad, ciudad_tienda);
 refresh materialized view canal_edad_tipo_ciudad;
+
+
+create materialized view tiendas_frecuencia as 
+select a.codigo_tienda, avg(a.frequency), 
+t.latitude, t.longitude, t.centro_comercial, t.canal
+from
+(select s.codigo_tienda, s.ciudad_tienda, 
+count(distinct s.factura) / count(distinct s.codigo_cliente) as frequency  
+from sales s
+where s.factura is not null 
+and s.codigo_cliente  is not null
+and s.fecha_compra >= '2019-9-1'
+group by s.codigo_tienda, s.ciudad_tienda ) a
+join tiendas t 
+on t.cod_tienda = a.codigo_tienda 
+group by a.codigo_tienda, t.latitude, t.longitude, t.centro_comercial, t.canal with no data;
+create unique index on tiendas_frecuencia(codigo_tienda);
+refresh materialized view tiendas_frecuencia;
