@@ -44,8 +44,8 @@ def create_stats():
            , orientation = 'h'
           )
     bar_fig.update_layout(
-        autosize=False,
-        width=1000,
+        autosize=True,
+        #width=1000,
         height=900,
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         yaxis={'categoryorder':'total ascending'}

@@ -1,7 +1,7 @@
 import dash_core_components as dcc
 import dash_html_components as html
 
-from scripts.stats import *
+from scripts import dashboard, analysis, segmentation
 
 def create_tab():
 
@@ -22,8 +22,8 @@ def create_tab():
 
 def create_content_tab(tab_name):
     if tab_name == 'Dashboard':
-        return create_stats()
+        return dashboard.create_dashboard()
     elif tab_name == 'Analysis':
-        return create_simulator()
+        return analysis.create_analysis()
     elif tab_name == 'Segmentation':
-        return create_segmentation()
+        return segmentation.create_segmentation()
