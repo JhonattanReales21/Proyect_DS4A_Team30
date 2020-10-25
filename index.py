@@ -29,13 +29,63 @@ from app import app
 ###########################################################
 
 # LOAD THE DIFFERENT FILES
-from scripts import title, sidebar, Col_map, stats, tabs
+from scripts import dashboard,tabs
 from data_fetch import get_views
+from get_callbacks import return_callbacks
 
 # PLACE THE COMPONENTS IN THE LAYOUT
 app.layout = html.Div(
-    [Col_map.create_map(), stats.create_stats(), title.create_title(), sidebar.create_sidebar(), tabs.create_tab()],
-    className="ds4a-app",  # You can also add your own css files by locating them into the assets folder
+    [
+    	html.Div([
+    			# left image
+    			html.Div(
+    				[
+    					html.Img(
+    							src = app.get_asset_url("ds4a-img.svg"), 
+    							id="ds4a-image",
+    							style = {
+    								"height": "60px",
+    								"width": "auto",
+    								"margin-bottom": "25px",
+    							},
+    						),
+    				],
+    				className = "one-third column",
+    			),
+    			# title
+    			html.Div(
+    				[
+	    				html.Div(
+	    					[
+		    					html.H3(
+									"OFFCORSS Segmentation Analysis",
+									style = {"margin-bottom": "0px"},
+		    					),
+	    					],
+	    				),
+	    			],
+	    			className = "one-third column",
+	    			id = "title",
+	    			style = {'display': 'block'},
+    			),
+    			# tabs
+    			html.Div(
+    				[
+    					tabs.create_tab()
+    				],
+    				className = "one-third column",
+    				id = "button",
+    			),
+    		],
+    		id = "header",
+    		className = "row flex-display",
+    		style = {"margin-bottom": "25px"}
+    	),
+    	html.Div(children = dashboard.create_dashboard(), id = "app-content"),
+    ],
+    #className="ds4a-app",  # You can also add your own css files by locating them into the assets folder
+    id = "MainContent",
+   	style = {"display":"flex", "flex-direction":"column"},
 )
 
 ###############################################
@@ -44,20 +94,7 @@ app.layout = html.Div(
 #
 ###############################################
 
-###############################################################
-# Load and modify the data that will be used in the app.
-#################################################################
-
-
-
-#############################################################
-# SCATTER & LINE PLOT : Add sidebar interaction here
-#############################################################
-
-
-#############################################################
-# TREEMAP PLOT : Add sidebar interaction here
-#############################################################
+return_callbacks(app)
 
 
 if __name__ == "__main__":
