@@ -54,3 +54,22 @@ on t.cod_tienda = a.codigo_tienda
 group by a.codigo_tienda, t.latitude, t.longitude, t.centro_comercial, t.canal with no data;
 create unique index on tiendas_frecuencia(codigo_tienda);
 refresh materialized view tiendas_frecuencia;
+
+
+create materialized view parallel_plot as
+select avg(valor_neto) as valor_neto, 
+canal, tipo_negocio, edad, saldo, tipo_tejido 
+from sales
+group by canal, tipo_negocio, edad, saldo, tipo_tejido
+with no data;
+create unique index on parallel_plot(canal, tipo_negocio, edad, saldo, tipo_tejido);
+refresh materialized view parallel_plot;
+
+create materialized view count_avg as 
+select avg(valor_neto) as ventas_promedio, count(valor_neto) as cantidad_compras,
+canal, fecha_compra 
+from sales s2 
+group by canal, fecha_compra
+with no data;
+create unique index on count_avg(canal, fecha_compra);
+refresh materialized view count_avg;
