@@ -37,8 +37,11 @@ from get_callbacks import return_callbacks
 app.layout = html.Div([
 	dbc.Row([
 				
-		dbc.Col(html.Img(src = app.get_asset_url("ds4a-img.svg")), #style={'height':'5%'}),
+		dbc.Col(html.Img(src = app.get_asset_url("ds4a-logo.png"), 
+				style={'height':'40%', 'padding':'10px'}),
 				width = {'size': 2},
+				xs=1,
+				md=2,
 				),
 
 		dbc.Col(html.H1("OFFCORRS Segmentation Analysis"),
@@ -48,14 +51,14 @@ app.layout = html.Div([
 		dbc.Col(html.Div([tabs.create_tab()], id="button"),
 				width = {'size': 4},
 				),
-			]),
+			],style={'margin-right':'0px', 'margin-left':'0px'}),
 	dbc.Row([
 		dbc.Col(
 			children = dashboard.create_dashboard(),
 			id="app-content",
 			className="ds4a-app"
 		)
-		])		
+		], style={'margin-right':'0px', 'margin-left':'0px'})		
 	])
    
 
