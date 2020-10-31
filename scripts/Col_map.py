@@ -37,7 +37,7 @@ def create_map():
 	m_prueba = folium.Map(location=[5.543949, -73.917579],max_zoom=18, zoom_start=5)
 	tooltip = 'Click me!'
 
-	group1=folium.FeatureGroup(name="Freq [1,1.25]")
+	group1=folium.FeatureGroup(name='<span style="color:red">Freq [1,1.25]</span>')
 	m_prueba.add_child(group1)
 	group2=folium.FeatureGroup(name="Freq [1.25,1.35]", show=False)
 	m_prueba.add_child(group2)
@@ -90,9 +90,11 @@ def create_map():
 	##############################
 	map = html.Div(
 	    [
+			html.H1("Map title"),
 	        # Place the main graph component here:
 	        html.Iframe(srcDoc = open('Colombia_map.html','r').read()
 	        	, id="COL_map",width='100%',height=600)
+			
 	    ],
 	    className="ds4a-body",
 	)

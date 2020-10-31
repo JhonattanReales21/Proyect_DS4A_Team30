@@ -34,63 +34,33 @@ from data_fetch import get_views
 from get_callbacks import return_callbacks
 
 # PLACE THE COMPONENTS IN THE LAYOUT
-app.layout = html.Div(
-    [
-    	html.Div([
-    			# left image
-    			html.Div(
-    				[
-    					html.Img(
-    							src = app.get_asset_url("ds4a-img.svg"), 
-    							id="ds4a-image",
-    							style = {
-    								"height": "60px",
-    								"width": "auto",
-    								"margin-bottom": "25px",
-									"padding": "5px"
-    							},
-    						),
-    				],
-    				className = "one-third column",
-    			),
-    			# title
-    			html.Div(
-    				[
-	    				html.Div(
-	    					[
-		    					html.H3(
-									"OFFCORSS Segmentation Analysis",
-									style = {"margin-bottom": "0px"},
-		    					),
-	    					],
-	    				),
-	    			],
-	    			className = "one-third column",
-	    			id = "title",
-	    			style = {'display': 'block'},
-    			),
-    			# tabs
-    			html.Div(
-    				[
-    					tabs.create_tab()
-    				],
-    				className = "one-third column",
-    				id = "button",
-    			),
-    		],
-    		id = "header",
-    		className = "row flex-display",
-    		style = {"margin-bottom": "25px"}
-    	),
-    	html.Div(
-			children = dashboard.create_dashboard(), 
-			id = "app-content",
-			style={"padding":"5px"}),
-    ],
-    #className="ds4a-app",  # You can also add your own css files by locating them into the assets folder
-    id = "MainContent",
-   	style = {"display":"flex", "flex-direction":"column"},
-)
+app.layout = html.Div([
+	dbc.Row([
+		dbc.Col(html.Img(src = app.get_asset_url("ds4a.jpg"), style={'height':'1%'}),
+				width = {'size': 1},
+				),
+				
+		dbc.Col(html.Img(src = app.get_asset_url("logooffcorss.svg"), style={'height':'1%'}),
+				width = {'size': 1},
+				),
+
+		dbc.Col(html.H1("OFFCORRS Segmentation Analysis"),
+				width = {'size': 6},
+				),
+
+		dbc.Col(html.Div([tabs.create_tab()], id="button"),
+				width = {'size': 4},
+				),
+			]),
+	dbc.Row([
+		dbc.Col(
+			children = dashboard.create_dashboard(),
+			id="app-content",
+			className="ds4a-app"
+		)
+		])		
+	])
+   
 
 ###############################################
 #
