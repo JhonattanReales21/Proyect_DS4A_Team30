@@ -45,13 +45,17 @@ app.layout = html.Div([
 				),
 
 		dbc.Col(html.H1("OFFCORRS Segmentation Analysis"),
-				width = {'size': 6},
+				width = {'size': 10},
 				),
 
-		dbc.Col(html.Div([tabs.create_tab()], id="button"),
-				width = {'size': 4},
-				),
+
 			],style={'margin-right':'0px', 'margin-left':'0px'}),
+	dbc.Row([
+				dbc.Col(html.Div([tabs.create_tab()], id="button"),
+				width = {'size': "auto"},
+				),
+		
+	],style={'margin-right':'0px', 'margin-left':'0px'}),
 	dbc.Row([
 		dbc.Col(
 			children = dashboard.create_dashboard(),
