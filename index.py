@@ -36,12 +36,9 @@ from get_callbacks import return_callbacks
 # PLACE THE COMPONENTS IN THE LAYOUT
 app.layout = html.Div([
 	dbc.Row([
-		dbc.Col(html.Img(src = app.get_asset_url("ds4a.jpg"), style={'height':'1%'}),
-				width = {'size': 1},
-				),
 				
-		dbc.Col(html.Img(src = app.get_asset_url("logooffcorss.svg"), style={'height':'1%'}),
-				width = {'size': 1},
+		dbc.Col(html.Img(src = app.get_asset_url("ds4a-img.svg")), #style={'height':'5%'}),
+				width = {'size': 2},
 				),
 
 		dbc.Col(html.H1("OFFCORRS Segmentation Analysis"),
