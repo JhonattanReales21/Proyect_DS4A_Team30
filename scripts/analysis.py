@@ -1,7 +1,11 @@
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 
 from scripts import Col_map, stats
+from data_fetch import get_views
+from get_callbacks import return_callbacks
+
 
 def create_analysis():
 	return [
@@ -53,11 +57,11 @@ def create_analysis():
             [
                 dbc.Col(dcc.Dropdown(id="slct_year3",placeholder='Ciudad...',
                  options=[
-                     {"label": "Edad", "value":'Edad'},
-                     {"label": "Canal de compra", "value":'Canal'},
+                     {"label": "Edad", "value":'edad'},
+                     {"label": "Canal de compra", "value":'canal'},
                     ],
                  multi=False,
-                 value='Canal',
+                 value='canal',
                  clearable=False,
                  style={'width': "60%"}),
                         width={'size': 6, "offset": 0, 'order': 1}
@@ -66,7 +70,7 @@ def create_analysis():
                  dbc.Col( dcc.RadioItems(
                 id='xaxis_raditem',
                 options=[
-                         {'label': 'Canal', 'value': 'Canal'},
+                         {'label': 'Canal', 'value': 'canal'},
                          {'label': 'Sublínea', 'value': 'Sublínea'},
                          {'label': 'Grupo de Articulo', 'value': 'Grupo de Artículo'},
                          {'label': 'Tipo de Negocio', 'value': 'Tipo de Negocio'},
@@ -74,7 +78,7 @@ def create_analysis():
                          {'label': 'Mes de Venta', 'value': 'Mes de Venta'},
                          {'label': 'Saldo', 'value': 'Saldo'},
                 ],
-                value='Canal',
+                value='canal',
                 style={"width": "50%"}
             ),width={'size': 6, "offset": 1.5, 'order':2 }
                 ),
