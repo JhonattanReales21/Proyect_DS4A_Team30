@@ -38,7 +38,7 @@ def return_callbacks(app):
 			df_line=get_views.get_view_by_name('edad_count_avg')
 		else:
 			df_line=get_views.get_view_by_name('count_avg')
-		fig2 = px.line(df_line, x="fecha_compra", y='ventas_promedio', color=choose,hover_data=['cantidad_compras'])
+		fig2 = px.bar(df_line, x="fecha_compra", y='ventas_promedio', color=choose,hover_data=['cantidad_compras'])
 		return fig2
 
 ############################################################# parallel plot######
