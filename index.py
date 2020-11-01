@@ -34,63 +34,45 @@ from data_fetch import get_views
 from get_callbacks import return_callbacks
 
 # PLACE THE COMPONENTS IN THE LAYOUT
-app.layout = html.Div(
-    [
-    	html.Div([
-    			# left image
-    			html.Div(
-    				[
-    					html.Img(
-    							src = app.get_asset_url("ds4a-img.svg"), 
-    							id="ds4a-image",
-    							style = {
-    								"height": "60px",
-    								"width": "auto",
-    								"margin-bottom": "25px",
-									"padding": "5px"
-    							},
-    						),
-    				],
-    				className = "one-third column",
-    			),
-    			# title
-    			html.Div(
-    				[
-	    				html.Div(
-	    					[
-		    					html.H3(
-									"OFFCORSS Segmentation Analysis",
-									style = {"margin-bottom": "0px"},
-		    					),
-	    					],
-	    				),
-	    			],
-	    			className = "one-third column",
-	    			id = "title",
-	    			style = {'display': 'block'},
-    			),
-    			# tabs
-    			html.Div(
-    				[
-    					tabs.create_tab()
-    				],
-    				className = "one-third column",
-    				id = "button",
-    			),
-    		],
-    		id = "header",
-    		className = "row flex-display",
-    		style = {"margin-bottom": "25px"}
-    	),
-    	html.Div(
-			children = dashboard.create_dashboard(), 
-			id = "app-content",
-			style={"padding":"5px"}),
-    ],
-    #className="ds4a-app",  # You can also add your own css files by locating them into the assets folder
-    id = "MainContent",
-   	style = {"display":"flex", "flex-direction":"column"},
-)
+app.layout = html.Div([
+	dbc.Row([
+				
+		dbc.Col(html.Img(src = app.get_asset_url("ds4a.jpg"), 
+				height=50),
+				width = {'size': 1},
+				style={'padding-right':'0px'}
+
+				),
+
+		dbc.Col(html.Img(src = app.get_asset_url("logooffcorss.svg"), 
+				height=50),
+				width = {'size': 2},
+				style={'padding-right':'0px', 'padding-left':'0px'}
+
+				),
+
+		dbc.Col(html.H1("OFFCORSS Segmentation Analysis"),
+				width = {'size': 9},
+				style = {'text-align':'center'},
+				),
+
+
+			],style={'margin-right':'0px', 'margin-left':'0px'}),
+	dbc.Row([
+				dbc.Col(html.Div([tabs.create_tab()], id="button"),
+				width = {'size': "auto"},
+				),
+		
+	],style={'margin-right':'0px', 'margin-left':'0px'}),
+	dbc.Row([
+		dbc.Col(
+			children = dashboard.create_dashboard(),
+			id="app-content",
+			className="ds4a-app"
+		)
+		], style={'margin-right':'0px', 'margin-left':'0px'})		
+	])
+   
 
 ###############################################
 #
