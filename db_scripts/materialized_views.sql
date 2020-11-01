@@ -73,3 +73,15 @@ group by canal, fecha_compra
 with no data;
 create unique index on count_avg(canal, fecha_compra);
 refresh materialized view count_avg;
+
+create materialized view edad_count_avg as
+select
+s.fecha_compra,
+s.edad,
+count(s.valor_neto) as volumen_ventas,
+avg(s.valor_neto) as promedio_productos
+from sales s
+group by s.fecha_compra,s.edad
+with no data;
+create unique index on edad_count_avg(fecha_compra,edad);
+refresh materialized view edad_count_avg;
