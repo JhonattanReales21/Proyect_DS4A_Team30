@@ -15,6 +15,7 @@ import os
 from geopy.geocoders import Nominatim
 import folium
 import geopandas
+import branca
 
 # Recall app
 from app import app
@@ -31,57 +32,78 @@ def create_map():
 	#############################
 	
 	df_for_map = get_views.get_view_by_name('tiendas_frecuencia')
-	df_for_map["Radio_for_map"]=df_for_map["valor_neto"]/37000000
+	df_for_map["Radio_for_map"]=((df_for_map["valor_neto"])/df_for_map["valor_neto"].mean())*10+5
 
 	# Create the map:
-	m_prueba = folium.Map(location=[5.543949, -73.917579],max_zoom=18, zoom_start=5)
-	tooltip = 'Click me!'
+	m_prueba = folium.Map(location=[6.461508, -75.000000],max_zoom=18, zoom_start=6)
 
-	group1=folium.FeatureGroup(name='<span style="color:red">Freq [1,1.25]</span>')
+	group1=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#FF0000'>frequency [1,1.25]</span></font>")
 	m_prueba.add_child(group1)
-	group2=folium.FeatureGroup(name="Freq [1.25,1.35]", show=False)
+
+	group2=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#FF7070'>frequency [1.25,1.35]</span></font>", show=False)
 	m_prueba.add_child(group2)
-	group3=folium.FeatureGroup(name="Freq [1.35,1.5]", show=False)
+
+	group3=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#FF6B22'>frequency [1.35,1.5]</span></font>", show=False)
 	m_prueba.add_child(group3)
-	group4=folium.FeatureGroup(name="Freq [1.5,1.8]", show=False)
+
+	group4=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#0FFB0E'>frequency [1.5,1.8]</span></font>", show=False)
 	m_prueba.add_child(group4)
-	group5=folium.FeatureGroup(name="Freq > 1.8", show=False)
+
+	group5=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#019F00'>frequency > 1.8</span></font>", show=False)
 	m_prueba.add_child(group5)
 
-	
-
 	for i in range(df_for_map.shape[0]):
-		sales=df_for_map.loc[i,"valor_neto"]
+		
+		sales=round(df_for_map.loc[i,"valor_neto"]/1000000,1)
+		sales=f"${sales}M"
+		
+		html_ = """
+		<h2 style="margin-bottom:-10"; align="center">{}</h2>""".format(df_for_map.loc[i,'punto_venta']) + """ <br>
+		<b>Total ventas (1 año):</b> {}""".format(sales) + """ <br/>
+		<b>Frec. de venta (1 año):</b> {}""".format(round(df_for_map.loc[i,'frequency'],4)) + """ <br/>
+		<b>Centro comercial:</b> {}""".format(df_for_map.loc[i,'centro_comercial']) + """ <br/>
+		<b>Canal:</b> {}""".format(df_for_map.loc[i,'canal']) + """ <br/>
+		<b>Codigo tienda:</b> {}""".format(df_for_map.loc[i,'codigo_tienda']) + """ <br/>
+		<b>IDGEO:</b> {}""".format(df_for_map.loc[i,'id_geo'])
+
+		iframe = branca.element.IFrame(html=html_, width=300, height=250)
+		popup = folium.Popup(iframe, max_width=305, parse_html=True)
+
 		if (df_for_map.loc[i,"frequency"] > 1) & (df_for_map.loc[i,"frequency"] <= 1.25):
-			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"],
+			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"], 
 						location=[df_for_map.loc[i,"latitude"],df_for_map.loc[i,"longitude"]],
-						popup=df_for_map.loc[i,"centro_comercial"],color="black",fill=True,fill_color="red",weight=1,
-								fill_opacity=0.5,
-						tooltip=f"Sales:{sales}").add_to(group1)
+						popup=popup,
+								color="black",fill=True,fill_color="#FF0000",weight=1,
+								fill_opacity=0.7,
+						tooltip=f"<FONT SIZE=4><b>Ventas</b>:{sales}</font>").add_to(group1)
+		
 		elif (df_for_map.loc[i,"frequency"] > 1.25) & (df_for_map.loc[i,"frequency"] <= 1.35):
-			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"],
+			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"], 
 						location=[df_for_map.loc[i,"latitude"],df_for_map.loc[i,"longitude"]],
-						popup=df_for_map.loc[i,"centro_comercial"],color="black",fill=True,fill_color="blue",weight=1,
-								fill_opacity=0.5,
-						tooltip=f"Sales:{sales}").add_to(group2)
+						popup=popup,color="black",fill=True,fill_color="#FF7070",weight=1,
+								fill_opacity=0.7,
+						tooltip=f"<FONT SIZE=4><b>Ventas</b>:{sales}</font>").add_to(group2)
+			
 		elif (df_for_map.loc[i,"frequency"] > 1.35) & (df_for_map.loc[i,"frequency"] <= 1.5):
-			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"],
+			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"], 
 						location=[df_for_map.loc[i,"latitude"],df_for_map.loc[i,"longitude"]],
-						popup=df_for_map.loc[i,"centro_comercial"],color="black",fill=True,fill_color="coral",weight=1,
-								fill_opacity=0.5,
-						tooltip=f"Sales:{sales}").add_to(group3)
+						popup=popup,color="black",fill=True,fill_color="#FF6B22",weight=1,
+								fill_opacity=0.8,
+						tooltip=f"<FONT SIZE=4><b>Ventas</b>:{sales}</font>").add_to(group3)
+		
 		elif (df_for_map.loc[i,"frequency"] > 1.5) & (df_for_map.loc[i,"frequency"] <= 1.8):
-			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"],
+			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"], 
 						location=[df_for_map.loc[i,"latitude"],df_for_map.loc[i,"longitude"]],
-						popup=df_for_map.loc[i,"centro_comercial"],color="black",fill=True,fill_color="green",weight=1,
-								fill_opacity=0.5,
-						tooltip=f"Sales:{sales}").add_to(group4)
+						popup=popup,color="black",fill=True,fill_color="#8EFF94",weight=1,
+								fill_opacity=0.8,
+						tooltip=f"<FONT SIZE=4><b>Ventas</b>:{sales}</font>").add_to(group4)
 		else:
-			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"],
+			folium.CircleMarker(radius=df_for_map.loc[i,"Radio_for_map"], 
 						location=[df_for_map.loc[i,"latitude"],df_for_map.loc[i,"longitude"]],
-						popup=df_for_map.loc[i,"centro_comercial"],color="black",fill=True,fill_color="purple",weight=1,
-								fill_opacity=0.5,
-						tooltip=f"Sales:{sales}").add_to(group5)
+						popup=popup,color="black",fill=True,fill_color="#2B9A00",weight=1,
+								fill_opacity=0.8,
+						tooltip=f"<FONT SIZE=4><b>Ventas</b>:{sales}</font>").add_to(group5)
+			
 	folium.TileLayer('cartodbpositron').add_to(m_prueba)
 	folium.LayerControl(collapsed=False).add_to(m_prueba)
 	m_prueba.save('Colombia_map.html')
@@ -90,11 +112,13 @@ def create_map():
 	##############################
 	map = html.Div(
 	    [
+<<<<<<< HEAD
 			html.H1("Sales frequency and amount per store"),
+=======
+>>>>>>> a77cdcc2fd94c710162a67f5c3858c7c9376b2ef
 	        # Place the main graph component here:
 	        html.Iframe(srcDoc = open('Colombia_map.html','r').read()
 	        	, id="COL_map",width='100%',height=600)
-			
 	    ],
 	    className="ds4a-body",
 	)
