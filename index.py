@@ -37,15 +37,23 @@ from get_callbacks import return_callbacks
 app.layout = html.Div([
 	dbc.Row([
 				
-		dbc.Col(html.Img(src = app.get_asset_url("ds4a-logo.png"), 
-				style={'height':'40%', 'padding':'10px'}),
+		dbc.Col(html.Img(src = app.get_asset_url("ds4a.jpg"), 
+				height=50),
+				width = {'size': 1},
+				style={'padding-right':'0px'}
+
+				),
+
+		dbc.Col(html.Img(src = app.get_asset_url("logooffcorss.svg"), 
+				height=50),
 				width = {'size': 2},
-				xs=1,
-				md=2,
+				style={'padding-right':'0px', 'padding-left':'0px'}
+
 				),
 
 		dbc.Col(html.H1("OFFCORRS Segmentation Analysis"),
-				width = {'size': 10},
+				width = {'size': 9},
+				style = {'text-align':'center'},
 				),
 
 
