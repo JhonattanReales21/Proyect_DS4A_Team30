@@ -1,5 +1,5 @@
 from dash.dependencies import Input, Output, State
-import pandas as pd 
+import pandas as pd
 import plotly.express as px
 from scripts import tabs
 from data_fetch import get_views
@@ -36,9 +36,10 @@ def return_callbacks(app):
 	def update(choose):
 		if (choose=='edad'):
 			df_line=get_views.get_view_by_name('edad_count_avg')
+			fig2 = px.bar(df_line, x="fecha_compra", y='ventas_promedio', color='edad',hover_data=['cantidad_compras'])
 		else:
 			df_line=get_views.get_view_by_name('count_avg')
-		fig2 = px.bar(df_line, x="fecha_compra", y='ventas_promedio', color=choose,hover_data=['cantidad_compras'])
+			fig2 = px.bar(df_line, x="fecha_compra", y='ventas_promedio', color='canal',hover_data=['cantidad_compras'])
 		return fig2
 
 ############################################################# parallel plot######
