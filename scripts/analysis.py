@@ -71,12 +71,12 @@ def create_analysis():
                 id='xaxis_raditem',
                 options=[
                          {'label': 'Canal', 'value': 'canal'},
-                         {'label': 'Sublínea', 'value': 'Sublínea'},
-                         {'label': 'Grupo de Articulo', 'value': 'Grupo de Artículo'},
-                         {'label': 'Tipo de Negocio', 'value': 'Tipo de Negocio'},
-                         {'label': 'Tipo de Tejido', 'value': 'Tipo de Tejido'},
-                         {'label': 'Mes de Venta', 'value': 'Mes de Venta'},
-                         {'label': 'Saldo', 'value': 'Saldo'},
+                         {'label': 'Sublínea', 'value': 'sublinea'},
+						 {'label': 'Tipo de Tejido', 'value': 'tipo_tejido'},
+                         {'label': 'Grupo de Artículo', 'value': 'grupo_articulo'},
+                         {'label': 'Tipo de Artículo', 'value': 'tipo_articulo'},
+                         {'label': 'Mes de Venta', 'value': 'mes_venta'},
+                         {'label': 'Saldo', 'value': 'saldo'},
                 ],
                 value='canal',
                 style={"width": "50%"}
