@@ -56,35 +56,34 @@ def return_callbacks(app):
 
 ################################################################ barplot #######
 	@app.callback(
-    	Output(component_id='fig4', component_property='figure'),
-    	Input(component_id='xaxis_raditem', component_property='value')
+		Output(component_id='fig4', component_property='figure'),
+		Input(component_id='xaxis_raditem', component_property='value')
 	)
-
 	def barp(select):
 		if (select=='canal'):
 			df_bar=get_views.get_view_by_name('ciudad_tienda_canal')
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False)
-        	fig5 = px.bar(df_bar, y='canal', x="volumen_pesos", color='canal', orientation="h", hover_name="ciudad_tienda" )
+			fig5 = px.bar(df_bar, y='canal', x="volumen_pesos", color='canal', orientation="h", hover_name="ciudad_tienda")
 		elif (select=='sublinea'):
 			df_bar=get_views.get_view_by_name('ciudad_tienda_sublinea')
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False)
-			fig5=px.bar(df_bar, y='sublinea', x="volumen_pesos", color='sublinea', orientation="h", hover_name="ciudad_tienda" )
+			fig5=px.bar(df_bar, y='sublinea', x="volumen_pesos", color='sublinea', orientation="h", hover_name="ciudad_tienda")
 		elif (select=='saldo'):
 			df_bar=get_views.get_view_by_name('ciudad_tienda_saldo')
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False)
-			fig5=px.bar(df_bar, y='saldo', x="volumen_pesos", color='saldo', orientation="h", hover_name="ciudad_tienda" )
+			fig5=px.bar(df_bar, y='saldo', x="volumen_pesos", color='saldo', orientation="h", hover_name="ciudad_tienda")
 		elif (select=='tipo_tejido'):
 			df_bar=get_views.get_view_by_name('ciudad_tienda_tipo_tejido')
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False)
-			fig5=px.bar(df_bar, y='tipo_tejido', x="volumen_pesos", color='tipo_tejido', orientation="h", hover_name="ciudad_tienda" )
+			fig5=px.bar(df_bar, y='tipo_tejido', x="volumen_pesos", color='tipo_tejido', orientation="h", hover_name="ciudad_tienda")
 		elif (select=='mes_venta'):
 			df_bar=get_views.get_view_by_name('ciudad_tienda_mes_venta')
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False)
-			fig5=px.bar(df_bar, y='mes_venta', x="volumen_pesos", color='mes_venta', orientation="h", hover_name="ciudad_tienda" )
+			fig5=px.bar(df_bar, y='mes_venta', x="volumen_pesos", color='mes_venta', orientation="h", hover_name="ciudad_tienda")
 		elif (select=='tipo_articulo'):
 			df_bar=get_views.get_view_by_name('ciudad_tienda_tipo_articulo')
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False).head(50)
-			fig5=px.bar(df_bar, y='tipo_articulo', x="volumen_pesos", color='tipo_articulo', orientation="h", hover_name="ciudad_tienda" )
+			fig5=px.bar(df_bar, y='tipo_articulo', x="volumen_pesos", color='tipo_articulo', orientation="h", hover_name="ciudad_tienda")
 		else:
 			df_bar=get_views.get_view_by_name('ciudad_tienda_grupo_articulo')
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False).head(50)
