@@ -35,6 +35,10 @@
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+body {
+  background-color: #f2f2f2;
+  margin: 0%;
+}
 .container {
   position: relative;
   width: 100%;

@@ -37,17 +37,17 @@ from get_callbacks import return_callbacks
 app.layout = html.Div([
 	dbc.Row([
 				
-		dbc.Col(html.Img(src = app.get_asset_url("ds4a.jpg"), 
+		dbc.Col(html.Img(src = app.get_asset_url("ds4a-img.svg"), 
 				height=50),
-				width = {'size': 1},
+				width = {'size': 1.5},
 				style={'padding-right':'0px'}
 
 				),
 
 		dbc.Col(html.Img(src = app.get_asset_url("logooffcorss.svg"), 
 				height=50),
-				width = {'size': 2},
-				style={'padding-right':'0px', 'padding-left':'0px'}
+				width = {'size': 1.5},
+				style={'padding-right':'0px'}
 
 				),
 
@@ -57,11 +57,9 @@ app.layout = html.Div([
 				),
 
 
-			],style={'margin-right':'0px', 'margin-left':'0px'}),
+	],style={'margin-right':'0px', 'margin-left':'0px'}),
 	dbc.Row([
-				dbc.Col(html.Div([tabs.create_tab()], id="button"),
-				width = {'size': "auto"},
-				),
+			dbc.Col(html.Div([tabs.create_tab()], id="button")),
 		
 	],style={'margin-right':'0px', 'margin-left':'0px'}),
 	dbc.Row([
