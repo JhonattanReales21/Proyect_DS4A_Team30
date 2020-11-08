@@ -89,3 +89,12 @@ def return_callbacks(app):
 			df_bar=df_bar.sort_values('volumen_pesos',ascending=False).head(50)
 			fig5=px.bar(df_bar, y='grupo_articulo', x="volumen_pesos", color='grupo_articulo', orientation="h", hover_name="ciudad_tienda" ,title="Sales generated according to: {}".format(select))
 		return fig5
+
+
+	@app.callback(
+    	Output(component_id='map_cities', component_property='figure'),
+    	Input(component_id='cities', component_property='value')
+	)
+	def map_cities(choose):
+		return 
+		
