@@ -118,7 +118,7 @@ def create_map():
 	# Map Layout
 	##############################
 	map = html.Div(
-	    [   
+	    [
 			html.H1("Sales frequency and amount per store"),
 	        # Place the main graph component here:
 	        html.Iframe(srcDoc = open('Colombia_map.html','r').read()
