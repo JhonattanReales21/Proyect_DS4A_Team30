@@ -6,7 +6,6 @@ from scripts import Col_map, stats
 def create_dashboard():
 	return [
 		html.H5("Initial dashboard"),
-		html.Br(),
 		html.P("Basic graphs"),
 		html.Div(
 			[

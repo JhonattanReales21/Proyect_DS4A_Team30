@@ -53,7 +53,7 @@ app.layout = html.Div([
 
 		dbc.Col(html.H1("OFFCORSS Segmentation Analysis"),
 				width = {'size': 9},
-				style = {'text-align':'center'},
+				style = {'text-align':'center', 'font-weight': 'bold'},
 				),
 
 

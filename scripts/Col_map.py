@@ -35,21 +35,29 @@ def create_map():
 	df_for_map["Radio_for_map"]=((df_for_map["valor_neto"])/df_for_map["valor_neto"].mean())*10+5
 
 	# Create the map:
-	m_prueba = folium.Map(location=[6.461508, -75.000000],max_zoom=18, zoom_start=6)
+	m_prueba = folium.Map(location=[6.461508, -75.000000],max_zoom=18, zoom_start=6, tiles="cartodbpositron")
 
-	group1=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#FF0000'>frequency [1,1.25]</span></font>")
+	circle="""
+	<svg version='1.1' xmlns='http://www.w3.org/2000/svg'
+		width='25' height='25' viewBox='0 0 120 120'>
+	<circle cx='60' cy='60' r='50'
+			fill={} />
+	</svg>
+	"""
+
+	group1=folium.FeatureGroup(name=circle.format('#FF0000')+"<FONT SIZE=2>Freq. [1,1.25]</font>  ")
 	m_prueba.add_child(group1)
 
-	group2=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#FF7070'>frequency [1.25,1.35]</span></font>", show=False)
+	group2=folium.FeatureGroup(name=circle.format('#FF7070')+"<FONT SIZE=2>Freq. [1.25,1.35]</font>", show=False)
 	m_prueba.add_child(group2)
 
-	group3=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#FF6B22'>frequency [1.35,1.5]</span></font>", show=False)
+	group3=folium.FeatureGroup(name=circle.format('#FF6B22')+"<FONT SIZE=2>Freq. [1.35,1.5]</font>" , show=False)
 	m_prueba.add_child(group3)
 
-	group4=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#0FFB0E'>frequency [1.5,1.8]</span></font>", show=False)
+	group4=folium.FeatureGroup(name=circle.format('#0FFB0E')+"<FONT SIZE=2>Freq. [1.5,1.8]</font>", show=False)
 	m_prueba.add_child(group4)
 
-	group5=folium.FeatureGroup(name="<FONT SIZE=3><span style='color:#019F00'>frequency > 1.8</span></font>", show=False)
+	group5=folium.FeatureGroup(name=circle.format('#019F00')+"<FONT SIZE=2>Freq. > 1.8</font>", show=False)
 	m_prueba.add_child(group5)
 
 	for i in range(df_for_map.shape[0]):
@@ -104,15 +112,14 @@ def create_map():
 								fill_opacity=0.8,
 						tooltip=f"<FONT SIZE=4><b>Ventas</b>:{sales}</font>").add_to(group5)
 			
-	folium.TileLayer('cartodbpositron').add_to(m_prueba)
 	folium.LayerControl(collapsed=False).add_to(m_prueba)
 	m_prueba.save('Colombia_map.html')
 	##############################
 	# Map Layout
 	##############################
 	map = html.Div(
-	    [   
-			html.H1("Sales frequency and amount per store"),
+	    [
+			html.H2("Sales frequency and amount per store"),
 	        # Place the main graph component here:
 	        html.Iframe(srcDoc = open('Colombia_map.html','r').read()
 	        	, id="COL_map",width='100%',height=600)
