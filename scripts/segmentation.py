@@ -6,7 +6,6 @@ from scripts import Col_map, stats
 def create_segmentation():
 	return [
 		html.H5("Initial Segmentation"),
-		html.Br(),
 		html.P("Basic Segmentation"),
 		html.Div(
 			[
