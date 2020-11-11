@@ -38,22 +38,31 @@ create unique index on canal_edad_tipo_ciudad(canal, tipo_articulo, edad, ciudad
 refresh materialized view canal_edad_tipo_ciudad;
 
 
-create materialized view tiendas_frecuencia as
-select a.codigo_tienda, avg(a.frequency),
-t.latitude, t.longitude, t.centro_comercial, t.canal
-from
-(select s.codigo_tienda, s.ciudad_tienda,
-count(distinct s.factura) / count(distinct s.codigo_cliente) as frequency
-from sales s
-where s.factura is not null
-and s.codigo_cliente  is not null
-and s.fecha_compra >= '2019-9-1'
-group by s.codigo_tienda, s.ciudad_tienda ) a
-join tiendas t
-on t.cod_tienda = a.codigo_tienda
-group by a.codigo_tienda, t.latitude, t.longitude, t.centro_comercial, t.canal with no data;
-create unique index on tiendas_frecuencia(codigo_tienda);
-refresh materialized view tiendas_frecuencia;
+CREATE MATERIALIZED VIEW public.tiendas_frecuencia
+TABLESPACE pg_default
+AS SELECT a.codigo_tienda,
+    a.frequency,
+    a.valor_neto,
+    t.id_geo,
+    t.latitude,
+    t.longitude,
+    t.centro_comercial,
+    t.canal,
+    t.ciudad,
+    t.punto_venta
+   FROM ( SELECT s.codigo_tienda,
+            count(DISTINCT s.factura)::double precision / count(DISTINCT s.codigo_cliente)::double precision AS frequency,
+            sum(s.valor_neto) AS valor_neto
+           FROM sales s
+          WHERE s.factura IS NOT NULL AND s.codigo_cliente IS NOT NULL AND s.fecha_compra >= '2019-09-01'::date
+          and s.descripcion_tienda <> 'TIENDA VIRTUAL'
+          GROUP BY s.codigo_tienda) a
+     JOIN tiendas t ON t.cod_tienda = a.codigo_tienda::text AND t.latitude IS NOT NULL AND t.longitude IS NOT NULL
+WITH DATA;
+
+
+
+create unique index on PUBLIC.tiendas_frecuencia(codigo_tienda, punto_venta); 
 
 
 create materialized view parallel_plot as
