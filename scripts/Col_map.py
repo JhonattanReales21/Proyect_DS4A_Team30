@@ -113,7 +113,7 @@ def create_map():
 						tooltip=f"<FONT SIZE=4><b>Ventas</b>:{sales}</font>").add_to(group5)
 			
 	folium.LayerControl(collapsed=False).add_to(m_prueba)
-	m_prueba.save('Colombia_map.html')
+	m_prueba.save('maps/Colombia_map.html')
 	##############################
 	# Map Layout
 	##############################
@@ -121,7 +121,7 @@ def create_map():
 	    [
 			html.H3("Sales frequency and amount per store"),
 	        # Place the main graph component here:
-	        html.Iframe(srcDoc = open('Colombia_map.html','r').read()
+	        html.Iframe(srcDoc = open('maps/Colombia_map.html','r').read()
 	        	, id="COL_map",width='100%',height=600)
 	    ],
 	    className="ds4a-body",
