@@ -52,7 +52,8 @@ p {
 
 .ds4a-sidebar {
     position: fixed;
-    top: 0;
+    z-index: 20;
+    top: 150px;
     left: 0;
     bottom: 0;
     width: 16rem;

@@ -119,12 +119,12 @@ def create_map():
 	##############################
 	map = html.Div(
 	    [
-			html.H3("Sales frequency and amount per store"),
+			html.H4("Sales frequency and amount per store (full country)"),
 	        # Place the main graph component here:
 	        html.Iframe(srcDoc = open('maps/Colombia_map.html','r').read()
 	        	, id="COL_map",width='100%',height=600)
 	    ],
-	    className="ds4a-body",
+	    #className="ds4a-body",
 	)
 
 	return map

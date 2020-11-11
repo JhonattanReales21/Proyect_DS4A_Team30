@@ -148,20 +148,6 @@ def create_map_cities():
         map_name = row[0]+'_map.html'
 
         m_prueba.save('maps/'+map_name)
-	##############################
-	# Map Layout
-	##############################
-	#map = html.Div(
-	#    [
-	#        # Place the main graph component here:
-	#        html.Iframe(srcDoc = open('Colombia_cities_map.html','r').read()
-	#        	, id="COL_cities_map",width='100%',height=600)
-	#    ],
-	#    className="ds4a-body",
-	#)
-
-	#return map
-
 
 
 

@@ -1,7 +1,7 @@
 from dash.dependencies import Input, Output, State
 import pandas as pd
 import plotly.express as px
-from scripts import tabs
+from scripts import tabs, call_maps
 from data_fetch import get_views
 
 def return_callbacks(app):
@@ -90,11 +90,12 @@ def return_callbacks(app):
 			fig5=px.bar(df_bar, y='grupo_articulo', x="volumen_pesos", color='grupo_articulo', orientation="h", hover_name="ciudad_tienda" ,title="Sales generated according to: {}".format(select))
 		return fig5
 
+	################################################################ cities map #######
 
 	@app.callback(
-    	Output(component_id='map_cities', component_property='figure'),
-    	Input(component_id='cities', component_property='value')
+    	Output(component_id='call_cities_map', component_property='srcDoc'),
+    	Input(component_id='slct_ciudad_map', component_property='value')
 	)
-	def map_cities(choose):
-		return 
+	def map_cities(ciudad):
+		return open('maps/'+ciudad+'_map.html','r').read()
 		

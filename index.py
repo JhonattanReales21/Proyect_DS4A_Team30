@@ -34,6 +34,14 @@ from data_fetch import get_views
 from get_callbacks import return_callbacks
 
 # PLACE THE COMPONENTS IN THE LAYOUT
+
+ciudades= ['Medellín', 'Bogotá', 'Barrancabermeja', 'Cali', 'Santa Marta', 'Cartagena', 'Yopal',
+		'Chía', 'Armenia', 'Villavicencio', 'Ipiales', 'Pasto', 'Bucaramanga', 'Cúcuta',
+		'Tunja', 'Pitalito', 'Barranquilla', 'Valledupar', 'Popayán', 'Ibagué', 'Montería',
+		'Riohacha', 'Ocaña', 'Girardot', 'Rionegro', 'Neiva', 'San Andres', 'Apartadó',
+		'Yumbo', 'Manizales', 'La Ceja', 'Aguachica', 'Envigado', 'Pereira', 'Duitama',
+		'Sogamoso', 'Arauca', 'Sincelejo', 'Florencia', 'Cartago', 'Palmira']
+
 app.layout = html.Div([
 	dbc.Row([
 				
@@ -58,7 +66,6 @@ app.layout = html.Div([
 				style = {'text-align':'center'},
 				),
 
-
 	], className="ds4a-title"),
 	dbc.Row([
 			html.Div([tabs.create_tab()], id="button"),		
@@ -67,8 +74,20 @@ app.layout = html.Div([
 	
 	dbc.Row([
 		dbc.Col(
+			html.Div([
+				dcc.Dropdown(id="slct_ciudad_map",placeholder='Ciudad...',
+                 options=[{'label': i, 'value': i} for i in sorted(ciudades)],
+                 multi=False,
+                 value='Bogotá',
+                 clearable=False,                                 
+                 style={"color":"black"}),
+				]),
+				width = {'size': 1},
+				className="ds4a-sidebar"),
+		dbc.Col(
 			children = dashboard.create_dashboard(),
 			id="app-content",
+			width = {'size': 11},
 			className="ds4a-app"
 		)
 		], style={'margin-right':'0px', 'margin-left':'0px'})		
