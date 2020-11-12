@@ -202,4 +202,4 @@ AS SELECT s.fecha_compra,
 WITH DATA;
 
 -- View indexes:
-CREATE UNIQUE INDEX ventas_diarias_fecha_compra_ciudad_idx ON public.ventas_diarias_ciudad USING btree (fecha_compra, ciudad tienda);
+CREATE UNIQUE INDEX ventas_diarias_fecha_compra_ciudad_idx ON public.ventas_diarias_ciudad USING btree (fecha_compra, ciudad_tienda);
