@@ -185,3 +185,21 @@ from sales s
 group by s.saldo,s.ciudad_tienda with no data;
 create unique index on ciudad_tienda_saldo(ciudad_tienda,saldo);
 refresh materialized view ciudad_tienda_saldo;
+
+
+CREATE MATERIALIZED VIEW public.ventas_diarias_ciudad
+TABLESPACE pg_default
+AS SELECT s.fecha_compra,
+    s.ciudad_tienda,
+    count(DISTINCT s.factura) AS numero_ventas,
+    count(s.id_sale) AS numero_productos,
+    sum(s.valor_neto) AS volumen_ventas,
+    sum(s.valor_neto) / count(DISTINCT s.factura)::numeric AS promedio_ventas,
+    avg(s.valor_neto) AS promedio_productos
+   FROM sales s
+  WHERE s.factura IS NOT null and s.descripcion_tienda <> 'TIENDA VIRTUAL'
+  GROUP BY s.fecha_compra, s.ciudad_tienda 
+WITH DATA;
+
+-- View indexes:
+CREATE UNIQUE INDEX ventas_diarias_fecha_compra_ciudad_idx ON public.ventas_diarias_ciudad USING btree (fecha_compra, ciudad tienda);
