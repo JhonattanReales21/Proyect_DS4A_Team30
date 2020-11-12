@@ -35,13 +35,6 @@ from get_callbacks import return_callbacks
 
 # PLACE THE COMPONENTS IN THE LAYOUT
 
-ciudades= ['Medellín', 'Bogotá', 'Barrancabermeja', 'Cali', 'Santa Marta', 'Cartagena', 'Yopal',
-		'Chía', 'Armenia', 'Villavicencio', 'Ipiales', 'Pasto', 'Bucaramanga', 'Cúcuta',
-		'Tunja', 'Pitalito', 'Barranquilla', 'Valledupar', 'Popayán', 'Ibagué', 'Montería',
-		'Riohacha', 'Ocaña', 'Girardot', 'Rionegro', 'Neiva', 'San Andres', 'Apartadó',
-		'Yumbo', 'Manizales', 'La Ceja', 'Aguachica', 'Envigado', 'Pereira', 'Duitama',
-		'Sogamoso', 'Arauca', 'Sincelejo', 'Florencia', 'Cartago', 'Palmira']
-
 app.layout = html.Div([
 	dbc.Row([
 				
@@ -49,16 +42,12 @@ app.layout = html.Div([
 				height=50),
 				width = {'size': 1.5},
 				style={'padding-right':'0px'},
-				
-
 				),
 
 		dbc.Col(html.Img(src = app.get_asset_url("logooffcorss.svg"), 
 				height=50),
 				width = {'size': 1.5},
 				style={'padding-right':'0px'},
-				
-
 				),
 
 		dbc.Col(html.H1("OFFCORSS Segmentation Analysis"),
@@ -74,21 +63,10 @@ app.layout = html.Div([
 	
 	dbc.Row([
 		dbc.Col(
-			html.Div([
-				dcc.Dropdown(id="slct_ciudad_map",placeholder='Ciudad...',
-                 options=[{'label': i, 'value': i} for i in sorted(ciudades)],
-                 multi=False,
-                 value='Bogotá',
-                 clearable=False,                                 
-                 style={"color":"black"}),
-				]),
-				width = {'size': 1},
-				className="ds4a-sidebar"),
-		dbc.Col(
 			children = dashboard.create_dashboard(),
 			id="app-content",
-			width = {'size': 11},
-			className="ds4a-app"
+			width = {'size': 12},
+			className="ds4a-body"
 		)
 		], style={'margin-right':'0px', 'margin-left':'0px'})		
 	])

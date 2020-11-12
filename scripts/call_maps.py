@@ -21,7 +21,7 @@ def call_cities_map(ciudad):
             # Place the main graph component here:
             html.H4("Sales frequency and amount per store (city)"),
             html.Iframe(srcDoc = open('maps/'+ciudad+'_map.html','r').read()
-            , id="call_cities_map",width='100%',height=600)
+            , id="call_cities_map",width='100%',height=500)
     ],
     className="ds4a-body",
     )

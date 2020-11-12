@@ -23,16 +23,17 @@ h6 { font-size: 2.0rem; line-height: 1.6;  letter-spacing: 0; margin-bottom: 0.7
 p {
   margin-top: 0; }
 
+  /*
 .ds4a-app {
-    margin-top: 120px;
-    background-color: #222222
-}
-
-.ds4a-body {
-    margin-left: 18rem;
-    margin-right: 2rem;
-    padding: 2rem 1rem;
+    margin-left: 22rem;
     background-color: #222222;
+
+}
+*/
+/* This class is used to make room for the title and navbar*/
+.ds4a-body {
+  margin-top: 130px;
+  background-color: #222222
 }
 
 .ds4a-title {
@@ -52,15 +53,15 @@ p {
 
 .ds4a-sidebar {
     position: fixed;
-    z-index: 20;
-    top: 150px;
-    left: 0;
-    bottom: 0;
-    width: 16rem;
+    z-index:30;
     padding: 2rem 1rem;
-    background-color: #222222; 
+    border: 0.1rem inset #2f2f2f;
+    background-color: #2f2f2f
+  
+
 }
 
+/*Class for custom tabs (navbar)*/
 .custom-tab {
     width: 100%;
     margin-top: 70px;

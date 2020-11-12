@@ -31,10 +31,14 @@ def create_stats():
         y = 'promedio_ventas', 
         hover_data=['volumen_ventas'])
 
+    line_fig.update_layout(
+         height=500
+    )
+
     ###############################################################
     # BAR PLOT
     ###############################################################
-    bar_df = get_views.get_view_by_name('venta_ciudad_tienda')
+    bar_df = get_views.get_view_by_name('venta_ciudad_tienda').head(10)
 
     bar_fig = px.bar(bar_df
            , y = 'ciudad_tienda', x = 'tienda_x_ciudad'
@@ -46,24 +50,31 @@ def create_stats():
     bar_fig.update_layout(
         autosize=True,
         #width=1000,
-        height=900,
+        height=500,
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         yaxis={'categoryorder':'total ascending'}
     )
     #################################################################################
     # Here the layout for the plots to use.
     #################################################################################
-    stats = html.Div(
-        [
-            # Place the different graph components here.
-            dbc.Row(
-                [
-                    dbc.Col(dcc.Graph(figure=bar_fig, id="bar")),
-                    dbc.Col(dcc.Graph(figure=line_fig, id="line")),
+    stats =  [      dbc.Col(
+                            #empty col just for layout
+                            width = 2,
+						    className="ds4a-sidebar"),
+                    dbc.Col(
+                        dbc.Card(
+                            dcc.Graph(figure=bar_fig, id="bar"),body=True, color="dark"
+                            ),
+                            width={"size": 5, "offset": 2},
+                            ),
+                    dbc.Col(
+                        dbc.Card(
+                            dcc.Graph(figure=line_fig, id="line"),body=True, color="dark"
+                            ),
+                            width=5
+                        )
                 ]
-            ),
-        ],
-        className="ds4a-body",
-    )
+            
+
 
     return stats
