@@ -203,3 +203,24 @@ WITH DATA;
 
 -- View indexes:
 CREATE UNIQUE INDEX ventas_diarias_fecha_compra_ciudad_idx ON public.ventas_diarias_ciudad USING btree (fecha_compra, ciudad_tienda);
+
+
+CREATE MATERIALIZED VIEW public.canal_edad_tipo_ciudad_cluster
+TABLESPACE pg_default
+AS SELECT s.canal,
+    s.edad,
+    s.tipo_articulo,
+    s.ciudad_tienda,
+    s.cluster_id,
+    sum(s.valor_neto) AS volumen_pesos,
+    count(s.row_id) AS cantidad_ventas
+   FROM clusterings s
+  GROUP BY s.canal, s.tipo_articulo, s.edad, s.ciudad_tienda, s.cluster_id
+WITH no DATA;
+
+-- View indexes:
+CREATE UNIQUE INDEX canal_edad_tipo_ciudad_canal_tipo_articulo_edad_ciudad_tienda_cluster_idx 
+ON public.canal_edad_tipo_ciudad_cluster 
+USING btree (canal, tipo_articulo, edad, ciudad_tienda, cluster_id);
+
+refresh materialized view public.canal_edad_tipo_ciudad_cluster;
