@@ -156,12 +156,12 @@ def return_callbacks(app):
 	)
 
 	def recom_sys (city, user):
-		#df_recoms_tunja =pd.read_csv('s3://ds4a-team-30/distances/TUNJA.csv')
-		#df_recoms_baq =pd.read_csv('s3://ds4a-team-30/distances/BARRANQUILLA.csv')
-		#df_recoms_agua =pd.read_csv('s3://ds4a-team-30/distances/AGUACHICA.csv')
-		df_recoms_tunja =pd.read_csv('data/TUNJA.csv')
-		df_recoms_baq =pd.read_csv('data/BARRANQUILLA.csv')
-		df_recoms_agua =pd.read_csv('data/AGUACHICA.csv')	
+		df_recoms_tunja =pd.read_csv('s3://ds4a-team-30/distances/TUNJA.csv')
+		df_recoms_baq =pd.read_csv('s3://ds4a-team-30/distances/BARRANQUILLA.csv')
+		df_recoms_agua =pd.read_csv('s3://ds4a-team-30/distances/AGUACHICA.csv')
+		#df_recoms_tunja =pd.read_csv('data/TUNJA.csv')
+		#df_recoms_baq =pd.read_csv('data/BARRANQUILLA.csv')
+		#df_recoms_agua =pd.read_csv('data/AGUACHICA.csv')	
 		if user is not None:
 			if city is not None:
 				if city == 'AGUACHICA':
