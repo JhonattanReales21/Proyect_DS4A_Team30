@@ -11,7 +11,10 @@ ciudades= ['Medellín', 'Bogotá', 'Barrancabermeja', 'Cali', 'Santa Marta', 'Ca
 		'Yumbo', 'Manizales', 'La Ceja', 'Aguachica', 'Envigado', 'Pereira', 'Duitama',
 		'Sogamoso', 'Arauca', 'Sincelejo', 'Florencia', 'Cartago', 'Palmira']
 
+
+# Pre-render all city maps
 Cities_map.create_map_cities()
+
 
 def create_dashboard():
 	return [
@@ -21,7 +24,7 @@ def create_dashboard():
 			[	
 				dbc.Row([
 					dbc.Col(
-						#html.Div([
+						dbc.CardBody(
 							dcc.Dropdown(
 								id="slct_ciudad_map",placeholder='Ciudad...',
 								options=[{'label': i, 'value': i} for i in sorted(ciudades)],
@@ -30,7 +33,7 @@ def create_dashboard():
 								clearable=False,                                 
 								style={"color":"black"}
 							),
-							#]),
+							),
 						width = 2,
 						className="ds4a-sidebar"
 						),
@@ -43,8 +46,8 @@ def create_dashboard():
 							html.Iframe(id="call_cities_map",width='100%',height=500),
 						], body=True, color="dark"),
 
-				
 						width={"size": 4, "offset": 2},
+						className="ds4a-app"
 						),
 						
 
@@ -53,11 +56,22 @@ def create_dashboard():
 							Col_map.create_map(), body=True, color="dark"
 							),
 						width=6,
+						className="ds4a-app" 
 						),
 					]), 
-    			dbc.Row(
-					stats.create_stats()
-					),
+    			dbc.Row([
+						dbc.Col(
+								dbc.Card([
+									html.H5('Sales history per city'),
+									dcc.Graph(
+										id='line_plot_cities',
+										figure={"layout": {"height": 500}},
+									),
+								], body=True, color="dark"),
+						width={"size": 10, "offset": 2},
+						className="ds4a-app" 
+						),
+					]),
 			],
 			id = "basic-graphs",
 		)

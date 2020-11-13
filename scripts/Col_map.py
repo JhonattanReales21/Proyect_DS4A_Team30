@@ -123,7 +123,7 @@ def create_map():
 			html.P("Full Country"),
 	        # Place the main graph component here:
 	        html.Iframe(srcDoc = open('maps/Colombia_map.html','r').read()
-	        	, id="COL_map",width='100%',height=500)
+	        	, id="COL_map",width='100%',height=526)
 	    ],
 	    #className="ds4a-body",
 	)

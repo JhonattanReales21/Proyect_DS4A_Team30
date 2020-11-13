@@ -93,9 +93,26 @@ def return_callbacks(app):
 	################################################################ cities map #######
 
 	@app.callback(
-    	Output(component_id='call_cities_map', component_property='srcDoc'),
+    	[Output(component_id='call_cities_map', component_property='srcDoc'), 
+		Output(component_id='line_plot_cities', component_property='figure')],
     	Input(component_id='slct_ciudad_map', component_property='value')
 	)
 	def map_cities(ciudad):
-		return open('maps/'+ciudad+'_map.html','r').read()
+		line_df = get_views.get_view_by_name('ventas_diarias_ciudad')
+		line_df["ciudad_tienda"]=line_df["ciudad_tienda"].apply(lambda x: x.capitalize())
+		line_df=line_df[line_df["ciudad_tienda"]==ciudad]
+		fig6 = px.line(line_df,x = 'fecha_compra',y = 'volumen_ventas',hover_data=['promedio_ventas'])
+
+		return open('maps/'+ciudad+'_map.html','r').read(), fig6
+
+
+
+
+
+
+
+
+
+
+
 		
