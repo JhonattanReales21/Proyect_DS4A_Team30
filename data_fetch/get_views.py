@@ -2,7 +2,6 @@ import pandas as pd
 from sqlalchemy import create_engine
 from os import environ
 
-
 DB_URI = environ['URI']
 ENGINE = create_engine(DB_URI)
 
