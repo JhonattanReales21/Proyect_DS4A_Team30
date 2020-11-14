@@ -34,39 +34,39 @@ from data_fetch import get_views
 from get_callbacks import return_callbacks
 
 # PLACE THE COMPONENTS IN THE LAYOUT
+
 app.layout = html.Div([
 	dbc.Row([
 				
 		dbc.Col(html.Img(src = app.get_asset_url("ds4a-img.svg"), 
 				height=50),
 				width = {'size': 1.5},
-				style={'padding-right':'0px'}
-
+				style={'padding-right':'0px'},
 				),
 
 		dbc.Col(html.Img(src = app.get_asset_url("logooffcorss.svg"), 
 				height=50),
 				width = {'size': 1.5},
-				style={'padding-right':'0px'}
-
+				style={'padding-right':'0px'},
 				),
 
 		dbc.Col(html.H1("OFFCORSS Segmentation Analysis"),
 				width = {'size': 9},
-				style = {'text-align':'center', 'font-weight': 'bold'},
+				style = {'text-align':'center'},
 				),
 
-
-	],style={'margin-right':'0px', 'margin-left':'0px'}),
+	], className="ds4a-title"),
 	dbc.Row([
-			dbc.Col(html.Div([tabs.create_tab()], id="button")),
-		
-	],style={'margin-right':'0px', 'margin-left':'0px'}),
+			html.Div([tabs.create_tab()], id="button"),		
+	], className="custom-tab"),
+
+	
 	dbc.Row([
 		dbc.Col(
 			children = dashboard.create_dashboard(),
 			id="app-content",
-			className="ds4a-app"
+			width = {'size': 12},
+			className="ds4a-body"
 		)
 		], style={'margin-right':'0px', 'margin-left':'0px'})		
 	])
