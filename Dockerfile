@@ -1,6 +1,4 @@
-FROM python:3.7
-
-ENV DASH_DEBUG_MODE True
+FROM dash:latest
 COPY . /app
 WORKDIR /app
 RUN set -ex && \
