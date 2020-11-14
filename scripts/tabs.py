@@ -1,7 +1,7 @@
 import dash_core_components as dcc
 import dash_html_components as html
 
-from scripts import dashboard, analysis, segmentation
+from scripts import dashboard, clustering, recommendation
 
 tab_height = '30px'
 
@@ -47,6 +47,6 @@ def create_content_tab(tab_name):
     if tab_name == 'Dashboard':
         return dashboard.create_dashboard()
     elif tab_name == 'Clustering':
-        return analysis.create_clustering()
+        return clustering.create_clustering()
     elif tab_name == 'Recommendation':
-        return segmentation.create_recommendation()
+        return recommendation.create_recommendation()
