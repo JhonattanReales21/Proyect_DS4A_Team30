@@ -2,7 +2,7 @@ from dash.dependencies import Input, Output, State
 import pandas as pd
 import plotly.express as px
 from scripts import tabs, call_maps
-from data_fetch import get_views
+from data_fetch import get_views, get_s3_data
 from dash.exceptions import PreventUpdate
 
 def return_callbacks(app):
@@ -156,12 +156,9 @@ def return_callbacks(app):
 	)
 
 	def recom_sys (city, user):
-		df_recoms_tunja =pd.read_csv('s3://ds4a-team-30/distances/TUNJA.csv')
-		df_recoms_baq =pd.read_csv('s3://ds4a-team-30/distances/BARRANQUILLA.csv')
-		df_recoms_agua =pd.read_csv('s3://ds4a-team-30/distances/AGUACHICA.csv')
-		#df_recoms_tunja =pd.read_csv('data/TUNJA.csv')
-		#df_recoms_baq =pd.read_csv('data/BARRANQUILLA.csv')
-		#df_recoms_agua =pd.read_csv('data/AGUACHICA.csv')	
+		df_recoms_tunja = get_s3_data.get_s3_matrix('TUNJA')
+		df_recoms_baq = get_s3_data.get_s3_matrix('BARRANQUILLA')
+		df_recoms_agua = get_s3_data.get_s3_matrix('AGUACHICA')
 		if user is not None:
 			if city is not None:
 				if city == 'AGUACHICA':
