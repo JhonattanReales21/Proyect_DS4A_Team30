@@ -57,10 +57,7 @@ def create_stats():
     #################################################################################
     # Here the layout for the plots to use.
     #################################################################################
-    stats =  [      dbc.Col(
-                            #empty col just for layout
-                            width = 2,
-						    className="ds4a-sidebar"),
+    stats =  [
                     dbc.Col(
                         dbc.Card(
                             dcc.Graph(figure=bar_fig, id="bar"),body=True, color="dark"

@@ -33,7 +33,7 @@ def create_dashboard():
 								clearable=False,                                 
 								style={"color":"black"}
 							),
-							),
+							className="sidebar-inner"),
 						width = 2,
 						className="ds4a-sidebar"
 						),

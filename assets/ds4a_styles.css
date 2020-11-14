@@ -6,7 +6,8 @@ html {
     font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
     line-height: 1.6;
     font-weight: 400;
-    font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;}
+    font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
 
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,8 +32,9 @@ p {
 
 /* This class is used to make room for the title and navbar*/
 .ds4a-body {
-  margin-top: 130px;
-  background-color: #222222
+  margin-top: 140px;
+  height:100%;
+  background-color: #222222;
 }
 
 .ds4a-title {
@@ -40,7 +42,7 @@ p {
     top: 0;
     left: 0;
     z-index: 5;
-    height: 70px;
+    height: 120px;
     width: 100%;
     margin-left: 0rem;
     margin-right: 0rem;
@@ -52,14 +54,23 @@ p {
 
 .ds4a-sidebar {
     position: fixed;
+    height:80%;
+    left: 0;
     z-index:30;
     padding: 2rem 1rem;
     border: 0.1rem inset #2f2f2f;
-    background-color: #2f2f2f
+    background-color: #2f2f2f;
+    overflow-y: scroll;
+}
+.sidebar-inner {
+  background-color:#fffa82;
+  border:gainsboro;
+  color:black
 }
 
 /*Class for custom tabs (navbar)*/
 .custom-tab {
+    padding: 0 0.5em 0.5em 0.5em;
     width: 100%;
     margin-top: 70px;
     margin-left: 0px;
@@ -68,9 +79,9 @@ p {
     z-index: 10;
     border-top: none;
     border-bottom: solid;
-    border-width: 0.1rem;
-    border-color: white;
-    background-color: #222222;
+    border-width: 2px;
+    border-color: gainsboro;
+    background-color: #121212;
 }
 
 #button, #tabs {
@@ -81,4 +92,21 @@ p {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gainsboro;
+  border-radius: 10px;
 }

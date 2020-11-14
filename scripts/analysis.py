@@ -80,8 +80,8 @@ card_main = dbc.Card(
                 value='canal',
                 style={"width": "50%",'color':'black'}
             ),
-            ]
-        ),
+            ],
+        className="sidebar-inner"),
     ],
     color="warning",   # https://bootswatch.com/default/ for more card colors
     inverse=False,   # change color of text (black or white)
@@ -110,13 +110,13 @@ card_main2 = dbc.Card(
 )
 
 
-def create_analysis():
+def create_clustering():
     return [
-        html.Br(),
+        #html.Br(),
 
         html.Div([
-            dbc.Row([dbc.Col(card_main, width=4),
-            dbc.Col(card_main2, width=8)], justify="around"),
+            dbc.Row([dbc.Col(card_main, width=4, className="ds4a-sidebar"),
+            dbc.Col(card_main2, width={"size": 8, "offset": 4})], justify="around"),
 
 
         ])

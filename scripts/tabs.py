@@ -37,8 +37,8 @@ def create_tab():
         value='Dashboard',
         children=[
             dcc.Tab(label='Dashboard', value='Dashboard', style=tab_style, selected_style=tab_selected_style),
-            dcc.Tab(label='Analysis', value='Analysis', style=tab_style, selected_style=tab_selected_style),
-            dcc.Tab(label='Segmentation', value='Segmentation', style=tab_style, selected_style=tab_selected_style)
+            dcc.Tab(label='Clustering', value='Clustering', style=tab_style, selected_style=tab_selected_style),
+            dcc.Tab(label='Recommendation', value='Recommendation', style=tab_style, selected_style=tab_selected_style)
         ],
     style=tabs_styles
     )
@@ -46,7 +46,7 @@ def create_tab():
 def create_content_tab(tab_name):
     if tab_name == 'Dashboard':
         return dashboard.create_dashboard()
-    elif tab_name == 'Analysis':
-        return analysis.create_analysis()
-    elif tab_name == 'Segmentation':
-        return segmentation.create_segmentation()
+    elif tab_name == 'Clustering':
+        return analysis.create_clustering()
+    elif tab_name == 'Recommendation':
+        return segmentation.create_recommendation()
