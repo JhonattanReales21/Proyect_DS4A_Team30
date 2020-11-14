@@ -5,23 +5,22 @@ import json
 from data_fetch import get_s3_data
 import pandas as pd
 
-df_recoms_tunja = get_s3_data.get_s3_matrix('TUNJA')
-df_recoms_baq = get_s3_data.get_s3_matrix('BARRANQUILLA')
-df_recoms_agua = get_s3_data.get_s3_matrix('AGUACHICA')
+recoms = {
+	'TUNJA': get_s3_data.get_s3_matrix('TUNJA'),
+	'BARRANQUILLA': get_s3_data.get_s3_matrix('BARRANQUILLA'),
+	'AGUACHICA': get_s3_data.get_s3_matrix('AGUACHICA')
+}
+
+user_groups = {key: recoms[key]['cliente'].unique() for key in recoms}
 
 
 def recom_sys(city, user):
 	if user is not None:
 		if city is not None:
-			if city == 'AGUACHICA':
-				df_recoms = df_recoms_agua
-			elif city == 'TUNJA':
-				df_recoms = df_recoms_tunja
-			elif city == 'BARRANQUILLA':
-				df_recoms = df_recoms_baq
-
-			#users_list = df_recoms[df_recoms['Ciudad Tienda']==city]['Codigo_Cliente'].unique()
-			users_list = df_recoms['cliente'].unique()
+			users_list = []
+			if city in recoms:
+				users_list = user_groups[city]
+				df_recoms = recoms[city]
 			options = [{'label': int(i), 'value': int(i)} for i in sorted(users_list)]
 			if user in users_list:
 				resu = pd.DataFrame()
@@ -39,14 +38,9 @@ def recom_sys(city, user):
 			return resu.to_dict('records'), options
 	else:
 		if city is not None:
-			if city == 'AGUACHICA':
-				df_recoms = df_recoms_agua
-			elif city == 'TUNJA':
-				df_recoms = df_recoms_tunja
-			elif city == 'BARRANQUILLA':
-				df_recoms = df_recoms_baq
-			#users_list = df_recoms[df_recoms['Ciudad Tienda']==city]['Codigo_Cliente'].unique()
-			users_list = df_recoms['cliente'].unique()
+			users_list = []
+			if city in recoms:
+				users_list = user_groups[city]
 			options = [{'label': int(i), 'value': int(i)} for i in sorted(users_list)]
 			resu = pd.DataFrame()
 			resu['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
