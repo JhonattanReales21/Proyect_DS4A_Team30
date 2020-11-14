@@ -63,6 +63,7 @@ p {
     overflow-y: scroll;
 }
 .sidebar-inner {
+  margin:2px;
   background-color:#fffa82;
   border:gainsboro;
   color:black
