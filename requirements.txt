@@ -16,3 +16,4 @@ seaborn
 folium
 geopy
 geopandas
+boto3

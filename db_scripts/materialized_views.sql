@@ -194,3 +194,42 @@ from sales s
 group by s.saldo,s.ciudad_tienda with no data;
 create unique index on ciudad_tienda_saldo(ciudad_tienda,saldo);
 refresh materialized view ciudad_tienda_saldo;
+
+
+CREATE MATERIALIZED VIEW public.ventas_diarias_ciudad
+TABLESPACE pg_default
+AS SELECT s.fecha_compra,
+    s.ciudad_tienda,
+    count(DISTINCT s.factura) AS numero_ventas,
+    count(s.id_sale) AS numero_productos,
+    sum(s.valor_neto) AS volumen_ventas,
+    sum(s.valor_neto) / count(DISTINCT s.factura)::numeric AS promedio_ventas,
+    avg(s.valor_neto) AS promedio_productos
+   FROM sales s
+  WHERE s.factura IS NOT null and s.descripcion_tienda <> 'TIENDA VIRTUAL'
+  GROUP BY s.fecha_compra, s.ciudad_tienda 
+WITH DATA;
+
+-- View indexes:
+CREATE UNIQUE INDEX ventas_diarias_fecha_compra_ciudad_idx ON public.ventas_diarias_ciudad USING btree (fecha_compra, ciudad_tienda);
+
+
+CREATE MATERIALIZED VIEW public.canal_edad_tipo_ciudad_cluster
+TABLESPACE pg_default
+AS SELECT s.canal,
+    s.edad,
+    s.tipo_articulo,
+    s.ciudad_tienda,
+    s.cluster_id,
+    sum(s.valor_neto) AS volumen_pesos,
+    count(s.row_id) AS cantidad_ventas
+   FROM clusterings s
+  GROUP BY s.canal, s.tipo_articulo, s.edad, s.ciudad_tienda, s.cluster_id
+WITH no DATA;
+
+-- View indexes:
+CREATE UNIQUE INDEX canal_edad_tipo_ciudad_canal_tipo_articulo_edad_ciudad_tienda_cluster_idx 
+ON public.canal_edad_tipo_ciudad_cluster 
+USING btree (canal, tipo_articulo, edad, ciudad_tienda, cluster_id);
+
+refresh materialized view public.canal_edad_tipo_ciudad_cluster;
