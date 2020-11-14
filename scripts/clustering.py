@@ -18,10 +18,12 @@ card_main = dbc.Card(
                     className="card-text",
                 ),
                 dcc.Dropdown(id="ciudades-dpdn",placeholder='Ciudad...',
-                 options=[{'label': i, 'value': i} for i in get_views.get_view_by_name('canal_edad_tipo_ciudad_cluster')['ciudad_tienda'].unique()],
+                 options=[{'label': i, 'value': i} for i in sorted(get_views.get_view_by_name('canal_edad_tipo_ciudad_cluster').drop(get_views.get_view_by_name('canal_edad_tipo_ciudad_cluster')[(get_views.get_view_by_name('canal_edad_tipo_ciudad_cluster')['ciudad_tienda'] == 'MEDELLIN') | (get_views.get_view_by_name('canal_edad_tipo_ciudad_cluster')['ciudad_tienda'] == 'BOGOTÁ') ].index)['ciudad_tienda'].unique())],
                  multi=False,
-                 value='YUMBO',
+                 value='AGUACHICA',
                  clearable=False,
+                 persistence=False,
+                 persistence_type='memory',
                  style={'width': "60%",'color':'black'}),
                 # dbc.Button("Press me", color="primary"),
                 # dbc.CardLink("GirlsWhoCode", href="https://girlswhocode.com/", target="_blank"),
@@ -29,7 +31,7 @@ card_main = dbc.Card(
                     "select the cluster you want to view",
                     className="card-text",
                 ),
-                dcc.Dropdown(id='cluster-dpdn', options=[], multi=False,style={'width': "60%",'color':'black'}),
+                dcc.Dropdown(id='cluster-dpdn',placeholder='cluster', options=[], multi=False,clearable=True,value=None,persistence=True,persistence_type='memory',style={'width': "60%",'color':'black'}),
                 html.P(
                     "Choose several categories to observe the profits produced",
                     className="card-text",
@@ -80,8 +82,8 @@ card_main = dbc.Card(
                 value='canal',
                 style={"width": "50%",'color':'black'}
             ),
-            ]
-        ),
+            ],
+        className="sidebar-inner"),
     ],
     color="warning",   # https://bootswatch.com/default/ for more card colors
     inverse=False,   # change color of text (black or white)
@@ -99,8 +101,8 @@ card_main2 = dbc.Card(
                 # dbc.CardLink("GirlsWhoCode", href="https://girlswhocode.com/", target="_blank"),
                 dbc.Card(dcc.Graph(id='fig1', figure={}), color="dark"),
                 dbc.Card(dcc.Graph(id='fig2', figure={})),
-                dbc.Card(dcc.Graph(id='fig4', figure={})),
                 dbc.Card(dcc.Graph(id='fig3', figure={})),
+                dbc.Card(dcc.Graph(id='fig4', figure={})),
                     ]
         ),
     ],
@@ -110,13 +112,13 @@ card_main2 = dbc.Card(
 )
 
 
-def create_analysis():
+def create_clustering():
     return [
-        html.Br(),
+        #html.Br(),
 
         html.Div([
-            dbc.Row([dbc.Col(card_main, width=4),
-            dbc.Col(card_main2, width=8)], justify="around"),
+            dbc.Row([dbc.Col(card_main, width=4, className="ds4a-sidebar"),
+            dbc.Col(card_main2, width={"size": 8, "offset": 4})], justify="around"),
 
 
         ])

@@ -9,7 +9,7 @@ import boto3
 
 from scripts import Col_map, stats
 
-def create_segmentation():
+def create_recommendation():
 	df_show = pd.DataFrame()
 	df_show['Recommended Articles'] = ['---', '---', '---', '---', '---'] 
 	return [
