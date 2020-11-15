@@ -228,7 +228,7 @@ def return_callbacks(app):
 	)
 	def recom_sys(city, user):
 		payload = {}
-		ip = '127.0.0.1'
+		ip = '54.224.7.212'
 		port = 5000
 		url = 'http://{0}:{1}/api/v1/suggest/'.format(ip, port)
 		if city is not None:
