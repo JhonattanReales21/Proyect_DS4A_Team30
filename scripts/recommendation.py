@@ -13,6 +13,10 @@ from scripts import Col_map, stats
 from app import app
 
 def create_recommendation():
+	'''
+	This function creates the layout where the recommendation system is going to be
+	displayed in the dash.
+	'''
 	df_show = pd.DataFrame()
 	df_show['Recommended Articles'] = ['---', '---', '---', '---', '---'] 
 	return [

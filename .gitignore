@@ -4,3 +4,5 @@
 *__pycache__/
 Colombia_map.html
 santiagoEC2.pem
+continuous_integration.sh
+local_test_docker.sh

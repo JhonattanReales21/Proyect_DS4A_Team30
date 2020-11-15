@@ -15,6 +15,17 @@ user_groups = {key: recoms[key]['cliente'].unique() for key in recoms}
 
 
 def recom_sys(city, user):
+	'''
+	This function builds the recommendations system for each customer
+	params:
+		- city:	The city where the user wants to consult a customer 
+		- user: a specific user from a city
+	returns:
+		- resu: the result of the recommendation system given a city 
+				and a user
+		- options: a dictionary of the users of a specific cluster in a
+				 	specific city.
+	'''
 	if user is not None:
 		if city is not None:
 			users_list = []
@@ -56,6 +67,10 @@ app = create_app()
 
 @app.route('/api/v1/suggest/', methods=['POST'])
 def get_suggestion():
+	'''
+	This functions does the same that recom_sys but returns the response
+	in a json format
+	'''
 	form = json.loads(request.data)
 	r, o = [], []
 	response = {}

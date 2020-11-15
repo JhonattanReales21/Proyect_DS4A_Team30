@@ -1,9 +1,9 @@
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-
 from scripts import Col_map, Cities_map, stats, call_maps	
 
+# Cities
 ciudades= ['Medellín', 'Bogotá', 'Barrancabermeja', 'Cali', 'Santa Marta', 'Cartagena', 'Yopal',
 		'Chía', 'Armenia', 'Villavicencio', 'Ipiales', 'Pasto', 'Bucaramanga', 'Cúcuta',
 		'Tunja', 'Pitalito', 'Barranquilla', 'Valledupar', 'Popayán', 'Ibagué', 'Montería',
@@ -17,9 +17,12 @@ Cities_map.create_map_cities()
 
 
 def create_dashboard():
+	'''
+	This function creates the layout where the initial dashboard is going to be
+	displayed in the dash.
+	'''
 	return [
-		#html.H5("Initial dashboard"),
-		#html.P("Basic graphs"),
+
 		html.Div(
 			[	
 				dbc.Row([

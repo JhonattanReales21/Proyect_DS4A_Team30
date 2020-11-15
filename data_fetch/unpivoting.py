@@ -2,7 +2,7 @@ import pandas as pd
 
 def sub_pivots(df, label_1, label_2, value_column, subgroup_column=None, subgroup_tag=None):
     """
-    Receives a dataframe (df) containing a binary function f(x,y) = z. This is, we have a column where we store x(label_1)
+     Receives a dataframe (df) containing a binary function f(x,y) = z. This is, we have a column where we store x(label_1)
      another one where we store y (label_2) , and another one whre we store z (value_column). The dataframe can also have
      an extra argument(subgroup_column) (thinkable as a condition/flag). If no subgroup_column is given, 
      the df is assumed not to have ordered (x, y) duplicates. For every the condition value (subgroup_tag) from the

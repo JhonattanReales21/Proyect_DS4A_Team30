@@ -25,8 +25,6 @@ card_main = dbc.Card(
                  persistence=False,
                  persistence_type='memory',
                  style={'width': "60%",'color':'black'}),
-                # dbc.Button("Press me", color="primary"),
-                # dbc.CardLink("GirlsWhoCode", href="https://girlswhocode.com/", target="_blank"),
                 html.P(
                     "select the cluster you want to view",
                     className="card-text",
@@ -62,8 +60,6 @@ card_main = dbc.Card(
                  value='canal',
                  clearable=False,
                  style={'width': "60%",'color':'black'}),
-                # dbc.Button("Press me", color="primary"),
-                # dbc.CardLink("GirlsWhoCode", href="https://girlswhocode.com/", target="_blank"),
                 html.P(
                     "Select the variable to view your sales behavior.",
                     className="card-text",
@@ -97,8 +93,6 @@ card_main2 = dbc.Card(
         dbc.CardBody(
             [
 
-                # dbc.Button("Press me", color="primary"),
-                # dbc.CardLink("GirlsWhoCode", href="https://girlswhocode.com/", target="_blank"),
                 dbc.Card(dcc.Graph(id='fig1', figure={}), color="dark"),
                 dbc.Card(dcc.Graph(id='fig2', figure={})),
                 dbc.Card(dcc.Graph(id='fig3', figure={})),
@@ -111,10 +105,13 @@ card_main2 = dbc.Card(
     outline=False,  # True = remove the block colors from the background and header
 )
 
-
 def create_clustering():
+    '''
+    This function creates the layout where the clustering EDA is going to be
+    displayed in the dash.
+    '''
+
     return [
-        #html.Br(),
 
         html.Div([
             dbc.Row([dbc.Col(card_main, width=4, className="ds4a-sidebar"),

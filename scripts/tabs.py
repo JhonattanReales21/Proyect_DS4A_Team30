@@ -19,8 +19,6 @@ tab_style = {
     'padding': '6px'
 
 }
-#'#07040d' - original black
-#'#121212' - background black darker
 tab_selected_style = {
 
     'backgroundColor': '#07040d',
@@ -31,7 +29,10 @@ tab_selected_style = {
 }
 
 def create_tab():
-
+    '''
+    This function creates the layout where the tabs are going to be
+    displayed in the dash.
+    '''
     return dcc.Tabs(
         id="tabs",
         value='Dashboard',
@@ -44,6 +45,9 @@ def create_tab():
     )
 
 def create_content_tab(tab_name):
+    '''
+    This function calls the render of each tab that is in the system
+    '''
     if tab_name == 'Dashboard':
         return dashboard.create_dashboard()
     elif tab_name == 'Clustering':

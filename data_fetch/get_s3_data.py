@@ -5,11 +5,19 @@ from botocore.config import Config
 import pandas as pd
 import os
 
-
-
 BUCKET_NAME = os.environ['BUCKET_NAME']
 
 def get_s3_matrix(city):
+    '''
+    This functions consults the s3 AWS bucket and returns
+    a csv of the city that is required. The csv is returned
+    as a pandas Dataframe
+    params: 
+        - city : city to be consulted in the s3 AWS
+    returns:
+        - csv of the city as a dataframe
+    '''
+
     path = 'distances/{}.csv'.format(city)
     s3 = boto3.resource('s3', config=Config(signature_version=UNSIGNED))
     name = '{}.csv'.format(city)

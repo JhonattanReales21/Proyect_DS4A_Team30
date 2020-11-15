@@ -17,20 +17,19 @@ import folium
 import geopandas
 import branca
 
-# Recall app
 from app import app
 from data_fetch import get_views
 
 def create_map_cities():
 
-    #############################
-	# Load paths
-	#############################
-
-
-	#############################
-	# Load map data
-	#############################
+    '''
+    This functions creates the maps off all cities where the company has stores.
+    params:
+        none
+    returns:
+        creates an html for all the cities where each map has information about
+        customers purchase frecuency 
+    '''
 	
     df_for_map = get_views.get_view_by_name('tiendas_frecuencia')
     df_for_map["Radio_for_map"]=((df_for_map["valor_neto"])/df_for_map["valor_neto"].mean())*10+5
@@ -148,55 +147,3 @@ def create_map_cities():
         map_name = row[0]+'_map.html'
 
         m_prueba.save('maps/'+map_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

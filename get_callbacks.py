@@ -10,7 +10,15 @@ from os import environ
 API_IP = environ['API_IP']
 
 def return_callbacks(app):
+	'''
+	This function listens all the interactions of the users with
+	the front-end and returns the corresponing changes that need
+	to be made.
+	'''
 
+	#######################
+	# Tab selection
+	#######################
 	@app.callback(
 		Output("app-content", "children"),
 		[
@@ -20,7 +28,9 @@ def return_callbacks(app):
 	def get_current_content(selected_tab):
 		return tabs.create_content_tab(selected_tab)
 
- ##################################### cluster
+ 	#######################
+	# Cluster EDA rendering
+	#######################
 	@app.callback(
 		Output('cluster-dpdn', 'options'),
 		Input('ciudades-dpdn', 'value')
@@ -30,8 +40,10 @@ def return_callbacks(app):
 		clean2=get_views.get_view_by_name('canal_edad_tipo_ciudad_cluster')
 		dff=clean2[clean2['ciudad_tienda']==chosen_state]
 		return [{'label': c, 'value': c} for c in sorted(dff['cluster_id'].unique())]
-########################Callbacks diagrama de torta
-# Connect the Plotly graphs with Dash Components
+
+	#######################
+	# Diagrama de torta cluster
+	#######################
 	@app.callback(
 		Output(component_id='fig1', component_property='figure'),
 		Input(component_id='ciudades-dpdn', component_property='value'),
@@ -61,7 +73,9 @@ def return_callbacks(app):
 				fig.update_traces(textinfo='label+percent entry')
 				fig.update_layout(margin=dict(t=0, l=0, r=0, b=0))
 		return fig
-############################################################# parallel plot######
+	#######################
+	# Parallel plot cluster
+	#######################
 	@app.callback(
 	Output('fig2', 'figure'),
 	Input('cluster-dpdn', 'value'),
@@ -86,7 +100,9 @@ def return_callbacks(app):
 				grupos=dff[(dff['ciudad_tienda']==selected_ciudad)]
 				fig2 = px.parallel_categories(grupos, dimensions=choose,color="valor_neto", color_continuous_scale=px.colors.sequential.Inferno,title='Parallel Categories Sales Category Diagram')
 		return fig2
-######################################
+	#######################
+	# Scatterplot cluster
+	#######################
 	@app.callback(
 	Output(component_id='fig3', component_property='figure'),
 	Input('cluster-dpdn', 'value'),
@@ -122,7 +138,9 @@ def return_callbacks(app):
 			df_line=dff[(dff['ciudad_tienda']==selected_ciudad)]
 			fig3 = px.scatter(df_line, x="fecha_compra", y='ventas_promedio', color=choose,hover_data=['cantidad_compras'],title="Trend of sales according to the annual course of : {}".format(choose))
 		return fig3
-##################################
+	#######################
+	# Plot diagram cluster
+	#######################
 	@app.callback(
 	Output(component_id='fig4', component_property='figure'),
 	Input('cluster-dpdn', 'value'),
@@ -206,8 +224,9 @@ def return_callbacks(app):
 		else:
 			print('no found')
 		return fig5
-			################################################################ cities map #######
-
+	#######################
+	# City map render
+	#######################
 	@app.callback(
 		[Output(component_id='call_cities_map', component_property='srcDoc'),
 		Output(component_id='line_plot_cities', component_property='figure')],
@@ -222,7 +241,9 @@ def return_callbacks(app):
 
 		return open('maps/'+ciudad+'_map.html','r').read(), fig6
 
-
+	#######################
+	# Recommendation system per user
+	#######################
 	@app.callback(
 		[Output('table','data'),
 		Output('user','options')],

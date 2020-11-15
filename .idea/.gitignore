@@ -1,2 +1,4 @@
 # Default ignored files
 /workspace.xml
+../continuous_integration.sh
+../local_test_docker.sh
