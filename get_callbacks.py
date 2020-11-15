@@ -5,6 +5,9 @@ from scripts import tabs, call_maps
 from data_fetch import get_views, get_s3_data
 import requests, json
 from dash.exceptions import PreventUpdate
+from os import environ
+
+API_IP = environ['API_IP']
 
 def return_callbacks(app):
 
@@ -228,7 +231,7 @@ def return_callbacks(app):
 	)
 	def recom_sys(city, user):
 		payload = {}
-		ip = '54.224.7.212'
+		ip = API_IP
 		port = 5000
 		url = 'http://{0}:{1}/api/v1/suggest/'.format(ip, port)
 		if city is not None:
