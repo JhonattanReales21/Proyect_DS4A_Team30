@@ -12,12 +12,17 @@ To check the application visit the following link [ai.offclusters.com](http://ai
 * [Python](http://www.python.org) version 3.6 or greater;
 * [Numpy](http://www.numpy.org), the core numerical extensions for linear algebra and multidimensional arrays;
 * [Scipy](http://www.scipy.org), additional libraries for scientific programming;
+* [Statsmodels](https://www.statsmodels.org/stable/index.html), library with statistcal models;
 * [Matplotlib](http://matplotlib.sf.net), excellent plotting and graphing libraries;
-* [IPython](http://ipython.org), with the additional libraries required for the notebook interface.
-* [Pandas](http://pandas.pydata.org/), Python version of R dataframe
-* [Seaborn](stanford.edu/~mwaskom/software/seaborn/), used mainly for plot styling
-* [PsycoPG2](https://pypi.org/project/psycopg2/), postgres driver for python.
-* [SQLAlchemy](https://docs.sqlalchemy.org/en/13/), for managing psycopg2 engines.
+* [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html), library to connect with S3 AWS buckets;
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/),used for the creation of the API;
+* [Dash](https://plotly.com), framework for building ML and DS web apps;
+* [Folium](https://python-visualization.github.io/folium/index.html#), used for the creation of maps;
+* [IPython](http://ipython.org), with the additional libraries required for the notebook interface;
+* [Pandas](http://pandas.pydata.org/), library to read files has a dataframe;
+* [Seaborn](stanford.edu/~mwaskom/software/seaborn/), used mainly for plot styling;
+* [PsycoPG2](https://pypi.org/project/psycopg2/), postgres driver for python;
+* [SQLAlchemy](https://docs.sqlalchemy.org/en/13/), for managing psycopg2 engines;
 
 ## Team
 | Name            |            Linkedin           |
