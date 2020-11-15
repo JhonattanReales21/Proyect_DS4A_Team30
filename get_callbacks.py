@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 from scripts import tabs, call_maps
 from data_fetch import get_views, get_s3_data
+import requests, json
 from dash.exceptions import PreventUpdate
 
 def return_callbacks(app):
@@ -225,53 +226,18 @@ def return_callbacks(app):
 		[Input('ciudad_dropdown','value'),
 		Input('user','value')]
 	)
-
-	def recom_sys (city, user):
-		df_recoms_tunja = get_s3_data.get_s3_matrix('TUNJA')
-		df_recoms_baq = get_s3_data.get_s3_matrix('BARRANQUILLA')
-		df_recoms_agua = get_s3_data.get_s3_matrix('AGUACHICA')
+	def recom_sys(city, user):
+		payload = {}
+		ip = '127.0.0.1'
+		port = 5000
+		url = 'http://{0}:{1}/api/v1/suggest/'.format(ip, port)
+		if city is not None:
+			payload['city'] = city
 		if user is not None:
-			if city is not None:
-				if city == 'AGUACHICA':
-					df_recoms = df_recoms_agua
-				elif city == 'TUNJA':
-					df_recoms = df_recoms_tunja
-				elif city == 'BARRANQUILLA':
-					df_recoms = df_recoms_baq
-
-				#users_list = df_recoms[df_recoms['Ciudad Tienda']==city]['Codigo_Cliente'].unique()
-				users_list = df_recoms['cliente'].unique()
-				options = [{'label': i, 'value': i} for i in sorted(users_list)]
-				if ((user == users_list).sum() > 0):
-					resu = pd.DataFrame()
-					resu['Recommended Articles'] = df_recoms[df_recoms['cliente'] == user]['recomendados']
-					items_to_recommend_to_user = resu
-				else:
-					items_to_recommend_to_user = pd.DataFrame()
-					items_to_recommend_to_user['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-					#return items_to_recommend_to_user.to_dict('records'), options
-				return items_to_recommend_to_user.to_dict('records'), options
-			else:
-				options = [{'label': "", 'value': ""}]
-				resu = pd.DataFrame()
-				resu['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-				return resu.to_dict('records'), options
-		else:
-			if city is not None:
-				if city == 'AGUACHICA':
-					df_recoms = df_recoms_agua
-				elif city == 'TUNJA':
-					df_recoms = df_recoms_tunja
-				elif city == 'BARRANQUILLA':
-					df_recoms = df_recoms_baq
-				#users_list = df_recoms[df_recoms['Ciudad Tienda']==city]['Codigo_Cliente'].unique()
-				users_list = df_recoms['cliente'].unique()
-				options = [{'label': i, 'value': i} for i in sorted(users_list)]
-				resu = pd.DataFrame()
-				resu['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-				return resu.to_dict('records'), options
-			else:
-				options = [{'label': "", 'value': ""}]
-				resu = pd.DataFrame()
-				resu['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-				return resu.to_dict('records'), options
+			payload['user'] = user
+		r = requests.post(url=url, data=json.dumps(payload))
+		response = r.json()
+		resu = pd.DataFrame()
+		resu['Recommended Articles'] = response['Recommended Articles']
+		options = response['Options']
+		return resu.to_dict('records'), options

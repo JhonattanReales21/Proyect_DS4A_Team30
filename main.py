@@ -23,33 +23,27 @@ def recom_sys(city, user):
 				df_recoms = recoms[city]
 			options = [{'label': int(i), 'value': int(i)} for i in sorted(users_list)]
 			if user in users_list:
-				resu = pd.DataFrame()
-				resu['Recommended Articles'] = df_recoms[df_recoms['cliente'] == user]['recomendados']
+				resu = list(df_recoms[df_recoms['cliente'] == user]['recomendados'])
 				items_to_recommend_to_user = resu
 			else:
-				items_to_recommend_to_user = pd.DataFrame()
-				items_to_recommend_to_user['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-				#return items_to_recommend_to_user.to_dict('records'), options
-			return items_to_recommend_to_user.to_dict('records'), options
+				items_to_recommend_to_user = ['None', 'None', 'None', 'None', 'None']
+			return items_to_recommend_to_user, options
 		else:
 			options = [{'label': "", 'value': ""}]
-			resu = pd.DataFrame()
-			resu['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-			return resu.to_dict('records'), options
+			resu = ['None', 'None', 'None', 'None', 'None']
+			return resu, options
 	else:
 		if city is not None:
 			users_list = []
 			if city in recoms:
 				users_list = user_groups[city]
 			options = [{'label': int(i), 'value': int(i)} for i in sorted(users_list)]
-			resu = pd.DataFrame()
-			resu['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-			return resu.to_dict('records'), options
+			resu = ['None', 'None', 'None', 'None', 'None']
+			return resu, options
 		else:
 			options = [{'label': "", 'value': ""}]
-			resu = pd.DataFrame()
-			resu['Recommended Articles'] = ['None', 'None', 'None', 'None', 'None']
-			return resu.to_dict('records'), options
+			resu = ['None', 'None', 'None', 'None', 'None']
+			return resu, options
 
 
 def create_app():
