@@ -22,7 +22,7 @@ To check the application visit the following link [ai.offclusters.com](http://ai
 ## Team
 | Name            |            Linkedin           |
 |-----------------|------------------------------------------------|
-| Francisco Bertel Romero | [linkedin.com/in/fbertelr](www.linkedin.com/in/fbertelr) |
+| Francisco Bertel Romero | [linkedin.com/in/fbertelr](https://www.linkedin.com/in/fbertelr/) |
 | Sebastian Racedo Valbuena | [linkedin.com/in/sebastian-racedo-valbuena](https://www.linkedin.com/in/sebastian-racedo-valbuena-62b895158/)           |
 | Henry Mejia Osorio | [linkedin.com/in/hmo/](https://www.linkedin.com/in/hmo/)  |
 | Jhonattan Reales de La Asunción | [linkedin.com/in/jhonattanreales/](https://www.linkedin.com/in/jhonattanreales/)  |
