@@ -1,6 +1,4 @@
-sudo git pull
-sudo docker rm $(docker ps -qa) -f
-
-sudo docker build -t dash:latest . 
-sudo docker run -it -d -p 80:8050  -v "$(PWD)":/app --rm dash:latest /bin/bash -c 'BUCKET_NAME=ds4a-team-30 URI=postgres://postgres:postgres@database-team30.cn9ikgjikjdg.us-east-2.rds.amazonaws.com:5432/postgres python3 main.py'
-sudo docker system prune -af
+sudo yum update -y
+sudo yum install -y python3
+sudo yum install -y python3-pip
+pip install -r requirements.txt
