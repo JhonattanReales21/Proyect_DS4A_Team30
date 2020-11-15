@@ -20,10 +20,12 @@ To check the application visit the following link [ai.offclusters.com](http://ai
 * [SQLAlchemy](https://docs.sqlalchemy.org/en/13/), for managing psycopg2 engines.
 
 ## Team
-- Francisco Bertel Romero
-- Henry Mejia Osorio
-- Jhonattan Reales de La Asunción
-- Mauricio Miranda Mejia
-- Roque A. Maldonado Insignares
-- Santiago Andrés Bohórquez Suárez
-- Sebastian Racedo Valbuena
+| Name            |            Linkedin           |
+|-----------------|------------------------------------------------|
+| Francisco Bertel Romero | [linkedin.com/in/fbertelr](www.linkedin.com/in/fbertelr) |
+| Sebastian Racedo Valbuena | [linkedin.com/in/sebastian-racedo-valbuena](https://www.linkedin.com/in/sebastian-racedo-valbuena-62b895158/)           |
+| Henry Mejia Osorio | [linkedin.com/in/hmo/](https://www.linkedin.com/in/hmo/)  |
+| Jhonattan Reales de La Asunción | [linkedin.com/in/jhonattanreales/](https://www.linkedin.com/in/jhonattanreales/)  |
+| Mauricio Miranda Mejia | [linkedin.com/in/mao-miranda10/](https://www.linkedin.com/in/mao-miranda10/)  |
+| Santiago Andrés Bohórquez Suárez | [linkedin.com/in/santiagobs/](https://www.linkedin.com/in/santiagobs/)  |
+| Roque A. Maldonado Insignares | [linkedin.com/in/roque-maldonado-insignares/](https://www.linkedin.com/in/roque-maldonado-insignares/)  |
